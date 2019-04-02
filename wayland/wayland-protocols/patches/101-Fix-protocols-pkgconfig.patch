@@ -1,0 +1,12 @@
+Index: wayland-protocols-1.16/wayland-protocols.pc.in
+===================================================================
+--- wayland-protocols-1.16.orig/wayland-protocols.pc.in
++++ wayland-protocols-1.16/wayland-protocols.pc.in
+@@ -1,6 +1,6 @@
+ prefix=@prefix@
+ datarootdir=@datarootdir@
+-pkgdatadir=${pc_sysrootdir}@datadir@/@PACKAGE@
++pkgdatadir=@datadir@/@PACKAGE@
+ 
+ Name: Wayland Protocols
+ Description: Wayland protocol files
