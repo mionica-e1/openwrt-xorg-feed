@@ -31,7 +31,7 @@ define Package/weston
   TITLE:=weston window manager
 
   DEPENDS:=@!avr32 @DISPLAY_SUPPORT +libinput +pixman \
-  +libxkbcommon +libpng +cairo +wayland \
+  +libxkbcommon +libpng +cairo +wayland +libjpeg \
   +FEATURE_drawing-backend_wayland:wayland \
   +FEATURE_drawing-backend_drm:libdrm \
   +FEATURE_drawing-backend_x11:xserver
