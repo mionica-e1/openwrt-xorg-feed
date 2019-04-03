@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wayland
-PKG_VERSION:=1.16.0
-PKG_RELEASE:=1
+PKG_VERSION:=1.17.0
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://wayland.freedesktop.org/releases/
-PKG_MD5SUM:=0c215e53de71d6fb26f7102cdc6432d3
+PKG_MD5SUM:=d91f970aea11fd549eae023d06f91af3
 
 PKG_INSTALL:=1
 PKG_FIXUP:=libtool
@@ -27,7 +27,7 @@ define Package/wayland
   SECTION:=wayland
   CATEGORY:=Wayland
   TITLE:=wayland core library
-  DEPENDS:=@!avr32 +libffi +libexpat +libxml2
+  DEPENDS:=@!avr32 +libffi +libexpat +libxml2 +libdrm
   URL:=https://wayland.freedesktop.org/
 endef
 
