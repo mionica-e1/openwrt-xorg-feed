@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wayland-protocols
-PKG_VERSION:=1.16
-PKG_RELEASE:=1
+PKG_VERSION:=1.17
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_SOURCE_URL:=https://wayland.freedesktop.org/releases/
-PKG_MD5SUM:=e0b523ff162e30bab46be1d65d527683
+PKG_MD5SUM:=55ddd5fdb02b73b9de9559aaec267315
 
 PKG_INSTALL:=1
 PKG_FIXUP:=libtool
@@ -32,6 +32,32 @@ define Package/wayland-protocols
   URL:=https://wayland.freedesktop.org/
 endef
 
+WAYLAND_PROTOCOLS_STABLE= \
+	presentation-time \
+	viewporter \
+	xdg-shell
+
+WAYLAND_PROTOCOLS_UNSTABLE= \
+	fullscreen-shell \
+	idle-inhibit \
+	input-method \
+	input-timestamps \
+	keyboard-shortcuts-inhibit \
+	linux-dmabuf \
+	linux-explicit-synchronization \
+	pointer-constraints \
+	pointer-gestures \
+	primary-selection \
+	relative-pointer \
+	tablet \
+	text-input \
+	xdg-decoration \
+	xdg-foreign \
+	xdg-output \
+	xdg-shell \
+	xwayland-keyboard-grab
+
+
 CONFIGURE_ARGS+= \
 	--disable-documentation
 
@@ -39,15 +65,15 @@ define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/share/pkgconfig/
 	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/share/pkgconfig/* $(1)/usr/share/pkgconfig/
 
-	$(INSTALL_DIR) $(1)/usr/share/wayland-protocols/stable/{presentation-time,viewporter,xdg-shell}
-	$(foreach d,presentation-time viewporter xdg-shell, \
+	$(foreach d,${WAYLAND_PROTOCOLS_STABLE}, \
+		$(INSTALL_DIR) $(1)/usr/share/wayland-protocols/stable/$(d)/; \
 		$(INSTALL_DATA) \
 			$(PKG_INSTALL_DIR)/usr/share/wayland-protocols/stable/$(d)/* \
 			$(1)/usr/share/wayland-protocols/stable/$(d)/; \
 	)
   
-	$(INSTALL_DIR) $(1)/usr/share/wayland-protocols/unstable/{fullscreen-shell,input-method,xdg-shell,tablet}
-	$(foreach d,fullscreen-shell input-method xdg-shell tablet, \
+	$(foreach d,${WAYLAND_PROTOCOLS_UNSTABLE}, \
+		$(INSTALL_DIR) $(1)/usr/share/wayland-protocols/unstable/$(d)/; \
 		$(INSTALL_DATA) \
 			$(PKG_INSTALL_DIR)/usr/share/wayland-protocols/unstable/$(d)/* \
 			$(1)/usr/share/wayland-protocols/unstable/$(d)/; \
@@ -61,17 +87,17 @@ define Host/Install
 	$(INSTALL_DIR) $(1)/usr/share/pkgconfig/
 	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/share/pkgconfig/* $(1)/usr/share/pkgconfig/
 
-	$(INSTALL_DIR) $(1)/usr/share/wayland-protocols/stable/{presentation-time,viewporter,xdg-shell}
-	$(foreach d,presentation-time viewporter xdg-shell, \
+	$(foreach d,${WAYLAND_PROTOCOLS_STABLE}, \
+		$(INSTALL_DIR) $(1)/usr/share/wayland-protocols/stable/$(d)/; \
 		$(INSTALL_DATA) \
-			$(PKG_INSTALL_DIR)/usr/share/wayland-protocols/stable/$(d)/* \
+			$(HOST_BUILD_DIR)/stable/$(d)/* \
 			$(1)/usr/share/wayland-protocols/stable/$(d)/; \
 	)
   
-	$(INSTALL_DIR) $(1)/usr/share/wayland-protocols/unstable/{fullscreen-shell,input-method,xdg-shell,tablet}
-	$(foreach d,fullscreen-shell input-method xdg-shell tablet, \
+	$(foreach d,${WAYLAND_PROTOCOLS_UNSTABLE}, \
+		$(INSTALL_DIR) $(1)/usr/share/wayland-protocols/unstable/$(d)/; \
 		$(INSTALL_DATA) \
-			$(PKG_INSTALL_DIR)/usr/share/wayland-protocols/unstable/$(d)/* \
+			$(HOST_BUILD_DIR)/unstable/$(d)/* \
 			$(1)/usr/share/wayland-protocols/unstable/$(d)/; \
 	)
 endef
