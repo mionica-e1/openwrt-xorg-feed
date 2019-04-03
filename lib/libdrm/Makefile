@@ -25,7 +25,7 @@ define Package/libdrm
   SECTION:=xorg-libraries
   CATEGORY:=Xorg
   SUBMENU:=libraries
-  DEPENDS:=
+  DEPENDS:=+xorg-macros
   TITLE:=libdrm
   URL:=http://dri.freedesktop.org/
 endef
