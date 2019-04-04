@@ -19,7 +19,7 @@ PKG_INSTALL:=1
 PKG_FIXUP:=libtool
 
 PKG_CONFIG_DEPENDS := \
-	CONFIG_WESTON_LAUNCH 
+	CONFIG_WESTON_LAUNCH=y
 
 PKG_BUILD_DEPENDS:=wayland-protocols/host
 
@@ -31,7 +31,7 @@ define Package/weston
   TITLE:=weston window manager
 
   DEPENDS:=@!avr32 @DISPLAY_SUPPORT +libinput +pixman \
-  +libxkbcommon +libpng +cairo +wayland +libjpeg \
+  +libxkbcommon +libpng +cairo +wayland +libjpeg +libpam \
   +FEATURE_drawing-backend_wayland:wayland \
   +FEATURE_drawing-backend_drm:libdrm \
   +FEATURE_drawing-backend_x11:xserver
@@ -43,11 +43,12 @@ CONFIGURE_ARGS+= \
 	--disable-documentation \
 	--enable-fbdev-compositor \
 	--enable-autotools \
+	--enable-weston-launch \
+	--disable-setuid-install \
 	WAYLAND_PROTOCOLS_DATADIR="${STAGING_DIR}/usr/share/wayland-protocols" \
 	$(if $(CONFIG_FEATURE_drawing-backend_wayland), --enable-wayland-compositor, --disable-wayland-compositor -disable-egl) \
 	$(if $(CONFIG_FEATURE_drawing-backend_drm), --enable-drm-compositor, --disable-drm-compositor) \
 	$(if $(CONFIG_FEATURE_drawing-backend_x11), --enable-x11-compositor --enable-xwayland, --disable-x11-compositor --disable-xwayland) \
-	$(if $(CONFIG_WESTON_LAUNCH),--enable-weston-launch,--disable-weston-launch) 
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/lib/
