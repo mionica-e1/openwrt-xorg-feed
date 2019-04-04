@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2006-2010 OpenWrt.org
+# Copyright (C) 2006-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -9,13 +9,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xcmiscproto
-PKG_VERSION:=1.2.0
-PKG_RELEASE:=1
+PKG_VERSION:=1.2.2
+PKG_RELEASE:=2
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/proto/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=7b83e4a7e9f4edc9c6cfb0500f4a7196
+PKG_HASH:=b13236869372256c36db79ae39d54214172677fb79e9cdc555dceec80bd9d2df
 
 include $(INCLUDE_DIR)/package.mk
 
