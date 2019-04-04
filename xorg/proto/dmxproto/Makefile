@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2006-2009 OpenWrt.org
+# Copyright (C) 2006-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=dmxproto
-PKG_RELEASE:=1
-PKG_VERSION:=2.3
+PKG_RELEASE:=2
+PKG_VERSION:=2.3.1
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/proto/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=880a41720b2937e2660dcdc0d34a8791
+PKG_MD5SUM:=4ee175bbd44d05c34d43bb129be5098a
 
 include $(INCLUDE_DIR)/package.mk
 
