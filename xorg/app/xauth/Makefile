@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2008 OpenWrt.org
+# Copyright (C) 2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xauth
-PKG_RELEASE:=1
-PKG_VERSION:=1.0.4
+PKG_RELEASE:=2
+PKG_VERSION:=1.0.10
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/X11R7.5/src/app
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
 
-PKG_MD5SUM:=fa00078c414c4a57cab7a6d89a0c8734
+PKG_HASH:=5afe42ce3cdf4f60520d1658d2b17face45c74050f39af45dccdc95e73fafc4d
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
