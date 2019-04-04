@@ -9,13 +9,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xf86vidmodeproto
-PKG_VERSION:=2.3
-PKG_RELEASE:=1
+PKG_VERSION:=2.3.1
+PKG_RELEASE:=2
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/proto/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=4434894fc7d4eeb4a22e6b876d56fdaa
+PKG_MD5SUM:=e793ecefeaecfeabd1aed6a01095174e
 
 include $(INCLUDE_DIR)/package.mk
 
