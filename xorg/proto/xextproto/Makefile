@@ -9,13 +9,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xextproto
-PKG_RELEASE:=1
-PKG_VERSION:=7.1.1
+PKG_RELEASE:=2
+PKG_VERSION:=7.3.0
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/proto/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=fb6ccaae76db7a35e49b12aea60ca6ff
+PKG_HASH:=f3f4b23ac8db9c3a9e0d8edb591713f3d70ef9c3b175970dd8823dfc92aa5bb0
 
 include $(INCLUDE_DIR)/package.mk
 

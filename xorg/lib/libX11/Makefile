@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libX11
-PKG_RELEASE:=1
-PKG_VERSION:=1.3.2
+PKG_RELEASE:=2
+PKG_VERSION:=1.6.4
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/lib/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=001d780829f936e34851ef7cd37b4dfd
+PKG_HASH:=b7c748be3aa16ec2cbd81edc847e9b6ee03f88143ab270fb59f58a044d34e441
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
