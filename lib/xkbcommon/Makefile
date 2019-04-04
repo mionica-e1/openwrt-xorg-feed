@@ -22,7 +22,8 @@ include $(INCLUDE_DIR)/package.mk
 
 define Package/libxkbcommon
   SECTION:=libxkbcommon
-  CATEGORY:=Wayland
+  CATEGORY:=Xorg
+  SUBMENU:=libraries
   TITLE:=xkbcommon library
   
   DEPENDS:=@!avr32 +xorg-macros\
