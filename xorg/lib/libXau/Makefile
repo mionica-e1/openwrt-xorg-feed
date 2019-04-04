@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2007-2010 OpenWrt.org
+# Copyright (C) 2007-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -10,13 +10,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_BASE_NAME:=libXau
 PKG_NAME:=libXau
-PKG_RELEASE:=1
-PKG_VERSION:=1.0.5
+PKG_RELEASE:=2
+PKG_VERSION:=1.0.8
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/lib/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=993b3185c629e4b89401fca072dcb663
+PKG_HASH:=fdd477320aeb5cdd67272838722d6b7d544887dfe7de46e1e7cc0c27c2bea4f2
 
 PKG_FIXUP:=libtool
 
