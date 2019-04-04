@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2008-2010 OpenWrt.org
+# Copyright (C) 2008-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xcb-proto
-PKG_VERSION:=1.3
-PKG_RELEASE:=1
+PKG_VERSION:=1.12
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://xcb.freedesktop.org/dist/
-PKG_MD5SUM:=d9275a714e83ab9c1f9b260c6eff1609
+PKG_HASH:=5922aba4c664ab7899a29d92ea91a87aa4c1fc7eb5ee550325c3216c480a4906
 PKG_INSTALL:=1
 
 #PKG_BUILD_DEPENDS:=python-mini/host
