@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2007-2010 OpenWrt.org
+# Copyright (C) 2007-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -9,13 +9,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_BASE_NAME:=libSM
 PKG_NAME:=libSM
-PKG_RELEASE:=2
-PKG_VERSION:=1.1.1
+PKG_RELEASE:=3
+PKG_VERSION:=1.2.2
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/lib/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=6889a455496aaaa65b1fa05fc518d179
+PKG_HASH:=0baca8c9f5d934450a70896c4ad38d06475521255ca63b717a6510fdb6e287bd
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
