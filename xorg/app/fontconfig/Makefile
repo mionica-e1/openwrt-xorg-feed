@@ -57,7 +57,7 @@ define Package/fontconfig/install
 	$(INSTALL_DIR) $(1)/usr/share
 	$(CP) $(PKG_INSTALL_DIR)/usr/share/* $(1)/usr/share/
 	$(INSTALL_DIR) $(1)/etc/fonts
-	$(CP) $(PKG_INSTALL_DIR)/etc/fonts.conf $(1)/etc/
+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/etc/fonts/fonts.conf $(1)/etc/fonts/
 	$(INSTALL_DIR) $(1)/etc/fonts/conf.d
 	$(CP) $(PKG_INSTALL_DIR)/etc/fonts/conf.d/* $(1)/etc/fonts/conf.d/
 endef
