@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2007-2009 OpenWrt.org
+# Copyright (C) 2007-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -9,13 +9,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libXft
-PKG_RELEASE:=1
-PKG_VERSION:=2.1.14
+PKG_RELEASE:=2
+PKG_VERSION:=2.3.2
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/lib/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=254e62a233491e0e1251636536163e20
+PKG_HASH:=f5a3c824761df351ca91827ac221090943ef28b248573486050de89f4bfcdc4c
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
