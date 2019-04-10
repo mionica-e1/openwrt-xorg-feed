@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2007-2010 OpenWrt.org
+# Copyright (C) 2007-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -9,13 +9,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libfontenc
-PKG_RELEASE:=1
-PKG_VERSION:=1.0.5
+PKG_RELEASE:=2
+PKG_VERSION:=1.1.3
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/lib/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=4f0d8191819be9f2bdf9dad49a65e43b
+PKG_HASH:=70588930e6fc9542ff38e0884778fbc6e6febf21adbab92fd8f524fe60aefd21
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
