@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2009-2010 OpenWrt.org
+# Copyright (C) 2009-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libXcomposite
-PKG_RELEASE:=1
-PKG_VERSION:=0.4.1
+PKG_RELEASE:=2
+PKG_VERSION:=0.4.4
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/lib/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=0f1367f57fdf5df17a8dd71d0fa68248
+PKG_HASH:=ede250cd207d8bee4a338265c3007d7a68d5aca791b6ac41af18e9a2aeb34178
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
