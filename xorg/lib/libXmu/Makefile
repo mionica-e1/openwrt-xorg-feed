@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2007-2010 OpenWrt.org
+# Copyright (C) 2007-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libXmu
-PKG_RELEASE:=1
-PKG_VERSION:=1.0.5
+PKG_RELEASE:=2
+PKG_VERSION:=1.1.2
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/lib/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=fc4d66be7a1a1eb474954728415e46d6
+PKG_HASH:=756edc7c383254eef8b4e1b733c3bf1dc061b523c9f9833ac7058378b8349d0b
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
