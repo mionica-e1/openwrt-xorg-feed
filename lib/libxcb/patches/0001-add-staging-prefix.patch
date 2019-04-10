@@ -1,0 +1,22 @@
+Index: libxcb-1.13/configure.ac
+===================================================================
+--- libxcb-1.13.orig/configure.ac
++++ libxcb-1.13/configure.ac
+@@ -71,8 +71,16 @@ PKG_CHECK_MODULES(XDMCP, xdmcp,
+ AC_SUBST(NEEDED)
+ 
+ # Find the xcb-proto protocol descriptions
++AC_ARG_WITH([xcbprotodir],
++  AS_HELP_STRING([--with-xcbprotodir=DIR], [directory for xcb proto files]),
++  [], [with_xcbprotodir=`$PKG_CONFIG --variable=xcbincludedir xcb-proto`])
++
++AS_IF([test "x$with_xcbprotodir" != "xno"], [
++  AC_SUBST([xcbprotodir], [$with_xcbprotodir])
++])
++
+ AC_MSG_CHECKING(XCBPROTO_XCBINCLUDEDIR)
+-XCBPROTO_XCBINCLUDEDIR=`$PKG_CONFIG --variable=xcbincludedir xcb-proto`
++XCBPROTO_XCBINCLUDEDIR=[$xcbprotodir]
+ AC_MSG_RESULT($XCBPROTO_XCBINCLUDEDIR)
+ AC_SUBST(XCBPROTO_XCBINCLUDEDIR)
+ 

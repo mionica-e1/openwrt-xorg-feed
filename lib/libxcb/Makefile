@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2008-2010 OpenWrt.org
+# Copyright (C) 2008-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libxcb
-PKG_VERSION:=1.1
-PKG_RELEASE:=2
+PKG_VERSION:=1.13
+PKG_RELEASE:=3
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=http://xcb.freedesktop.org/dist/
-PKG_MD5SUM:=9310b02433273d75d42f10da3c7455aa
+PKG_HASH:=188c8752193c50ff2dbe89db4554c63df2e26a2e47b0fa415a70918b5b851daa
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
 PKG_BUILD_DEPENDS:=xcbproto libpthread-stubs
@@ -54,6 +54,9 @@ define Package/libxcb-$(1)
   DEPENDS:=+libxcb
 endef
 endef
+
+CONFIGURE_ARGS += \
+	--with-xcbprotodir=${STAGING_DIR}/usr/share/xcb/
 
 $(foreach proto,$(PROTOS),$(eval $(call Package/libxcb-proto/Default,$(proto))))
 
