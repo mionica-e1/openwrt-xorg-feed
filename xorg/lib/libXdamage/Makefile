@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2009-2010 OpenWrt.org
+# Copyright (C) 2009-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libXdamage
-PKG_RELEASE:=1
-PKG_VERSION:=1.1.2
+PKG_RELEASE:=2
+PKG_VERSION:=1.1.4
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/lib/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=b42780bce703ec202a33e5693991c09d
+PKG_HASH:=7c3fe7c657e83547f4822bfde30a90d84524efb56365448768409b77f05355ad
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
