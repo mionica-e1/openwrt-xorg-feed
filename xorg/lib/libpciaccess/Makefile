@@ -9,13 +9,13 @@ include $(TOPDIR)/rules.mk
 
 PKG_BASE_NAME:=libpciaccess
 PKG_NAME:=libpciaccess
-PKG_RELEASE:=1
-PKG_VERSION:=0.10.9
+PKG_RELEASE:=2
+PKG_VERSION:=0.14
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/lib/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=685cb20e7a6165bc010972f1183addbd
+PKG_HASH:=3df543e12afd41fea8eac817e48cbfde5aed8817b81670a4e9e493bb2f5bf2a4
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
@@ -27,7 +27,7 @@ define Package/libpciaccess
   SECTION:=xorg-libraries
   CATEGORY:=Xorg
   SUBMENU:=libraries
-  DEPENDS:=+pciutils
+  DEPENDS:=+pciutils @PCI_SUPPORT
   TITLE:=libpciaccess
   URL:=http://xorg.freedesktop.org/
 endef
