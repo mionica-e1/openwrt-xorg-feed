@@ -27,15 +27,13 @@ define Package/libX11
   SECTION:=xorg-libraries
   CATEGORY:=Xorg
   SUBMENU:=libraries
-  DEPENDS:=+libXdmcp +libXau @FEATURE_drawing-backend_libX11 @DISPLAY_SUPPORT
+  DEPENDS:=+libXdmcp +libXau @DISPLAY_SUPPORT
   TITLE:=libX11
   URL:=http://xorg.freedesktop.org/
 endef
 
-define Feature/libX11
-  TARGET_NAME:=drawing-backend
-  TARGET_TITLE:=Drawing Backend
-  NAME:=libX11
+define Package/libX11/config
+	source "$(SOURCE)/Config.in"
 endef
 
 define Build/Configure

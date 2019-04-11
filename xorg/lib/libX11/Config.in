@@ -1,0 +1,6 @@
+# libX11 config
+config DISPLAY_X11_SUPPORT
+	depends on DISPLAY_SUPPORT
+	depends on PACKAGE_libX11
+	bool
+	default n
