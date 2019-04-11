@@ -32,8 +32,8 @@ define Package/pango
   SUBMENU:=libraries
   TITLE:=Text layout and rendering library
   DEPENDS:=+cairo +glib2 +fontconfig +libfreetype \
-  +FEATURE_drawing-backend_libX11:libX11 \
-  +FEATURE_drawing-backend_libX11:libXft
+  +CONFIG_DISPLAY_X11_SUPPORT:libX11 \
+  +CONFIG_DISPLAY_X11_SUPPORT:libXft
   URL:=http://www.pango.org/
 endef
 

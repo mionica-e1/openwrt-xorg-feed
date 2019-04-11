@@ -30,7 +30,7 @@ STAMP_CONFIGURED:=$(STAMP_CONFIGURED)_$(call confvar,CONFIG_PACKAGE_hippo-canvas
 
 define Package/hippo-canvas/Default
   URL:=http://developer.mugshot.org/wiki/Hippo_Canvas
-  DEPENDS:=@FEATURE_drawing-backend_libX11
+  DEPENDS:=@DISPLAY_X11_SUPPORT
 endef
 
 define Package/hippo-canvas

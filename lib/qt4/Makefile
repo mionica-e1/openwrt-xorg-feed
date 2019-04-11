@@ -71,8 +71,8 @@ define Package/qt4-gui
   $(call Package/qt4/Default)
   DEFAULT:=
   DEPENDS+=+PACKAGE_qt4-gui:libpng +PACKAGE_qt4-gui:libtiff +PACKAGE_qt4-gui:libjpeg +PACKAGE_qt4-gui:libfreetype +qt4-network \
-	+FEATURE_drawing-backend_libX11:libX11 \
-	+FEATURE_drawing-backend_libX11:libXext @DISPLAY_SUPPORT
+	+CONFIG_DISPLAY_X11_SUPPORT:libX11 \
+	+CONFIG_DISPLAY_X11_SUPPORT:libXext @DISPLAY_SUPPORT
   TITLE+=(gui)
 endef
 

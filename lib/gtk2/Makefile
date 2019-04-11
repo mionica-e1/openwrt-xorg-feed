@@ -35,16 +35,16 @@ define Package/gtk2
   SUBMENU:=framework
   TITLE:=GTK+-2.0
   DEPENDS:=@DISPLAY_SUPPORT +cairo +pango +libpng +libjpeg +atk +libtiff +glib2 \
-  +FEATURE_drawing-backend_DirectFB:directfb \
-  +FEATURE_drawing-backend_libX11:libX11 \
-  +FEATURE_drawing-backend_libX11:libXext \
-  +FEATURE_drawing-backend_libX11:libXrender \
-  +FEATURE_drawing-backend_libX11:libXfixes \
-  +FEATURE_drawing-backend_libX11:libXrandr \
-  +FEATURE_drawing-backend_libX11:libXcursor \
-  +FEATURE_drawing-backend_libX11:libXdamage \
-  +FEATURE_drawing-backend_libX11:libXcomposite \
-  +FEATURE_drawing-backend_libX11:libXi
+  +CONFIG_DISPLAY_DIRECTFB_SUPPORT:directfb \
+  +CONFIG_DISPLAY_X11_SUPPORT:libX11 \
+  +CONFIG_DISPLAY_X11_SUPPORT:libXext \
+  +CONFIG_DISPLAY_X11_SUPPORT:libXrender \
+  +CONFIG_DISPLAY_X11_SUPPORT:libXfixes \
+  +CONFIG_DISPLAY_X11_SUPPORT:libXrandr \
+  +CONFIG_DISPLAY_X11_SUPPORT:libXcursor \
+  +CONFIG_DISPLAY_X11_SUPPORT:libXdamage \
+  +CONFIG_DISPLAY_X11_SUPPORT:libXcomposite \
+  +CONFIG_DISPLAY_X11_SUPPORT:libXi
   URL:=http://www.gtk.org/
 endef
 
@@ -65,8 +65,8 @@ define Build/Configure
 		--disable-xinerama \
 		--without-libjasper \
 		--without-xinput \
-		$(if $(CONFIG_FEATURE_drawing-backend_DirectFB),--with-gdktarget=directfb,) \
-		$(if $(CONFIG_FEATURE_drawing-backend_libX11),--with-x --with-gdktarget=x11,--without-x) \
+		$(if $(CONFIG_DISPLAY_DIRECTFB_SUPPORT),--with-gdktarget=directfb,) \
+		$(if $(CONFIG_CONFIG_DISPLAY_X11_SUPPORT),--with-x --with-gdktarget=x11,--without-x) \
 		$(if $(CONFIG_PACKAGE_gtk2-cups),--enable-cups=auto,--disable-cups), \
 		gio_can_sniff=no \
 	)

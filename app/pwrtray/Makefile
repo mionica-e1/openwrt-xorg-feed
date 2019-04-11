@@ -41,7 +41,7 @@ define Package/pwrtray-backend
   SECTION:=utils
   CATEGORY:=Utilities
   TITLE:=System power control daemon
-  DEPENDS:=+FEATURE_drawing-backend_libX11:libX11
+  DEPENDS:=+CONFIG_DISPLAY_X11_SUPPORT:libX11
 endef
 
 define Package/pwrtray-backend/description

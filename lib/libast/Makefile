@@ -27,15 +27,15 @@ define Package/libast
   SUBMENU:=libraries
   TITLE:=libast
   DEPENDS:=+libpcre \
-  	+FEATURE_drawing-backend_libX11:libX11 \
-  	+FEATURE_drawing-backend_libX11:libXt
+  	+CONFIG_DISPLAY_X11_SUPPORT:libX11 \
+  	+CONFIG_DISPLAY_X11_SUPPORT:libXt
 endef
 
 CONFIGURE_ARGS+= \
 	--with-regexp="pcre" \
 	--without-imlib \
 
-ifneq ($(CONFIG_FEATURE_drawing-backend_libX11),)
+ifneq ($(CONFIG_DISPLAY_X11_SUPPORT),)
   CONFIGURE_ARGS+= \
 	--with-x \
 	--x-includes="$(STAGING_DIR)/usr/include" \
