@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2006-2010 OpenWrt.org
+# Copyright (C) 2006-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -8,12 +8,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xorg-server
-PKG_VERSION:=1.7.1
-PKG_RELEASE:=1
+PKG_VERSION:=1.19.1
+PKG_RELEASE:=2
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/xserver/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_MD5SUM:=dda7842467cda6018fdc87e6002e4db1
+PKG_HASH:=79ae2cf39d3f6c4a91201d8dad549d1d774b3420073c5a70d390040aa965a7fb
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/xserver/$(PKG_NAME)-$(PKG_VERSION)/
 PKG_BUILD_DEPENDS:=randrproto renderproto fixesproto damageproto xcmiscproto \
@@ -62,9 +62,11 @@ $(call Package/xorg/Default)
   +libfontenc \
   +pixman \
   +libopenssl \
-  +libpciaccess \
+  +CONFIG_TARGET_x86:libpciaccess \
+  +CONFIG_TARGET_x86_64:libpciaccess \
   +libdrm \
   +libgl-mesa \
+  +@DISPLAY_X11_SUPPORT \
   @DISPLAY_SUPPORT
 endef
 
