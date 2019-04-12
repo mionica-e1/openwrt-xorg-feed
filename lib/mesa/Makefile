@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2008-2010 OpenWrt.org
+# Copyright (C) 2008-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -7,13 +7,13 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=Mesa
-PKG_RELEASE:=2
-PKG_VERSION:=7.2
+PKG_NAME:=mesa
+PKG_RELEASE:=3
+PKG_VERSION:=18.3.6
 
-PKG_SOURCE_URL:=@SF/mesa3d
-PKG_SOURCE:=$(PKG_NAME)Lib-$(PKG_VERSION).tar.bz2
-PKG_MD5SUM:=04d379292e023df0b0266825cb0dbde5
+PKG_SOURCE_URL:=https://mesa.freedesktop.org/archive/
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_HASH:=aaf17638dcf5a90b93b6389e152fdc9ef147768b09598f24d2c5cf482fcfc705
 PKG_FIXUP:=libtool
 PKG_BUILD_DEPENDS:=glproto
 
@@ -27,7 +27,7 @@ define Package/libgl-mesa
   SUBMENU:=libraries
   DEPENDS:=+libX11 +libXext +libXfixes +libXdamage +libXxf86vm +libdrm +libexpat
   TITLE:=Mesa OpenGL library
-  URL:=http://mesa3d.org
+  URL:=https://mesa.freedesktop.org
 endef
 
 define Package/libglu-mesa
@@ -36,7 +36,7 @@ define Package/libglu-mesa
   SUBMENU:=libraries
   DEPENDS:=+libgl-mesa
   TITLE:=Mesa OpenGL utility library
-  URL:=http://mesa3d.org
+  URL:=https://mesa.freedesktop.org
 endef
 
 define Package/libgl-mesa-dri/Default
@@ -46,7 +46,7 @@ define Package/libgl-mesa-dri-$(1)
   SUBMENU:=libraries
   DEPENDS:=libgl-mesa @DISPLAY_SUPPORT $(if $(findstring swrast,$(1)),,@TARGET_x86)
   TITLE:=mesa dri $(1)
-  URL:=http://mesa3d.org
+  URL:=https://mesa.freedesktop.org
 endef
 endef
 
@@ -63,6 +63,7 @@ define Build/Configure
 	$(call Build/Configure/Default, \
 		--disable-glw \
 		--with-driver=dri \
+		--with-platform=drm \
 		--with-dri-drivers="$(foreach dri,$(DRIDRIVERS),$(if $(CONFIG_PACKAGE_libgl-mesa-dri-$(dri)),$(dri)))" \
 	)
 endef
