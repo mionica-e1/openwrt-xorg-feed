@@ -25,12 +25,45 @@ define Package/libdrm
   SECTION:=xorg-libraries
   CATEGORY:=Xorg
   SUBMENU:=libraries
-  DEPENDS:=+xorg-macros
+  DEPENDS:=+xorg-macros +libatomic
   TITLE:=libdrm
   URL:=http://dri.freedesktop.org/
 endef
 
+define Package/libdrm-api/Default
+define Package/libdrm-$(1)
+  SECTION:=xorg-libraries
+  CATEGORY:=Xorg
+  SUBMENU:=libraries
+  DEPENDS:=libdrm @DISPLAY_SUPPORT $(2)
+  TITLE:=drm $(1) api
+  URL:=https://dri.freedesktop.org
+endef
+endef
+
+DRM_X86:=amdgpu nouveau radeon intel vmwgfx
+DRM_ARM:=freedreno freedreno-kgsl vc4
+DRM_ARM_EX:=omap exynos tegra etnaviv
+
 CONFIGURE_ARGS += --enable-malloc0returnsnull --without-xcb
+
+$(foreach dri,$(DRM_X86),$(eval $(call Package/libdrm-api/Default,$(dri),@TARGET_x86)))
+$(foreach dri,$(DRM_ARM),$(eval $(call Package/libdrm-api/Default,$(dri),@arm)))
+$(foreach dri,$(DRM_ARM_EX),$(eval $(call Package/libdrm-api/Default,$(dri),@arm)))
+
+STAMP_CONFIGURED:=$(STAMP_CONFIGURED)_$(call confvar,CONFIG_PACKAGE_libdrm \
+    $(foreach dri,$(DRM_X86),CONFIG_PACKAGE_libdrm-$(dri)) \
+	$(foreach dri,$(DRM_ARM),CONFIG_PACKAGE_libdrm-$(dri)) \
+	$(foreach dri,$(DRM_ARM_EX),CONFIG_PACKAGE_libdrm-$(dri)) \
+	)
+
+define Build/Configure
+	$(call Build/Configure/Default, \
+		$(foreach dri,$(DRM_X86),$(if $(CONFIG_PACKAGE_libdrm-$(dri)),--enable-$(dri),--disable-$(dri))) \
+		$(foreach dri,$(DRM_ARM),$(if $(CONFIG_PACKAGE_libdrm-$(dri)),--enable-$(dri),--disable-$(dri))) \
+		$(foreach dri,$(DRM_ARM_EX),$(if $(CONFIG_PACKAGE_libdrm-$(dri)),--enable-$(dri)-experimental-api)) \
+		)
+endef
 
 define Build/Compile
 	$(call $(PKG_NAME)/Compile)
@@ -41,11 +74,28 @@ endef
 
 define Package/libdrm/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libdrm* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libkms* $(1)/usr/lib/
 endef
 
 define Build/InstallDev
 	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
 endef
 
+define Package/libdrm-api/install/Default
+define Package/libdrm-$(1)/install
+	$(INSTALL_DIR) $$(1)/usr/lib/
+	$(CP) \
+		$(PKG_INSTALL_DIR)/usr/lib/libdrm_$(1).so* \
+		$$(1)/usr/lib/
+endef
+endef
+
+$(foreach dri,$(DRM_X86),$(eval $(call Package/libdrm_api/install/Default,$(dri))))
+$(foreach dri,$(DRM_ARM),$(eval $(call Package/libdrm_api/install/Default,$(dri))))
+$(foreach dri,$(DRM_ARM_EX),$(eval $(call Package/libdrm_api/install/Default,$(dri))))
+
 $(eval $(call BuildPackage,libdrm))
+$(foreach dri,$(DRM_X86),$(eval $(call BuildPackage,libdrm-$(dri))))
+$(foreach dri,$(DRM_ARM),$(eval $(call BuildPackage,libdrm-$(dri))))
+$(foreach dri,$(DRM_ARM_EX),$(eval $(call BuildPackage,libdrm-$(dri))))
