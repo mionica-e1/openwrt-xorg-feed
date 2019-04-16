@@ -27,7 +27,8 @@ define Package/cairo
   TITLE:=Multi-platform 2D graphics library
   DEPENDS:=+fontconfig +libpng +libexpat +pixman +liblzo \
   +CONFIG_DISPLAY_DIRECTFB_SUPPORT:directfb \
-  +CONFIG_DISPLAY_X11_SUPPORT:libX11
+  $(if $(CONFIG_PACKAGE_libX11), +libX11 +libXext +libxcb-render +libxcb-shm) \
+  $(if $(CONFIG_PACKAGE_glib2), +glib2)
   URL:=http://cairographics.org/
 endef
 
@@ -47,7 +48,7 @@ CONFIGURE_ARGS+= \
 	--disable-win32 \
 	--enable-xlib-xrender=no \
 	$(if $(CONFIG_DISPLAY_DIRECTFB_SUPPORT), --enable-directfb, --disable-directfb) \
-	$(if $(CONFIG_DISPLAY_X11_SUPPORT), --enable-xlib --with-x, --disable-xlib --without-x)
+	$(if $(CONFIG_PACKAGE_libX11), --enable-xlib --with-x, --disable-xlib --without-x)
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/lib/
