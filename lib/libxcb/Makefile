@@ -20,8 +20,10 @@ PKG_BUILD_DEPENDS:=xcbproto libpthread-stubs
 
 include $(INCLUDE_DIR)/package.mk
 
-PROTOS:=composite damage dpms glx randr record render res screensaver shape \
-        shm sync xevie xf86dri xfixes xinerama xprint xtest xvmc xv
+PROTOS:=bigreq composite damage dpms dri2 dri3 ge glx \
+		present randr record render res screensaver shape \
+        shm sync xc_misc xevie xf86dri xfixes xinerama \
+		xinput xkb xprint xproto xselinux xtest xvmc xv
 
 define Package/libxcb
   SECTION:=xorg-libraries
