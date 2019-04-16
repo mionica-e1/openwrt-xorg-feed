@@ -115,10 +115,10 @@ define Build/Configure
 endef
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/{include/GL,lib/pkgconfig}
+	$(INSTALL_DIR) $(1)/usr/{include,lib/pkgconfig}
 	$(CP) \
-		$(PKG_INSTALL_DIR)/usr/include/GL/* \
-		$(1)/usr/include/GL
+		$(PKG_INSTALL_DIR)/usr/include/* \
+		$(1)/usr/include/
 
 	$(CP) \
 		$(PKG_INSTALL_DIR)/usr/lib/*.so* \
