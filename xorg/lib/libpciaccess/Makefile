@@ -27,7 +27,7 @@ define Package/libpciaccess
   SECTION:=xorg-libraries
   CATEGORY:=Xorg
   SUBMENU:=libraries
-  DEPENDS:=+pciutils @PCI_SUPPORT
+  DEPENDS:=+pciutils
   TITLE:=libpciaccess
   URL:=http://xorg.freedesktop.org/
 endef
