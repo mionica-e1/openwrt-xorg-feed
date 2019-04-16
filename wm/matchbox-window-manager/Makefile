@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=matchbox-window-manager
-PKG_VERSION:=1.2
+PKG_VERSION:=1.2.2
 PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=http://matchbox-project.org/sources/$(PKG_NAME)/$(PKG_VERSION)
-PKG_MD5SUM:=3e158dcf57823b55c926d95b245500fb
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_SOURCE_URL:=https://git.yoctoproject.org/cgit/cgit.cgi/$(PKG_NAME)/snapshot
+PKG_MD5SUM:=66a778afb4117542f337419aa2c90af8
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
