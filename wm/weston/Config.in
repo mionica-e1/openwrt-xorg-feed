@@ -1,0 +1,8 @@
+menu "weston misc support"
+
+	config WESTON_LAUNCH
+		depends on PACKAGE_libpam
+		bool
+		prompt "build weston-launch"
+
+endmenu

@@ -31,11 +31,11 @@ define Package/weston
   TITLE:=weston window manager
 
   DEPENDS:=@!avr32 @DISPLAY_SUPPORT +libinput +pixman \
-  +libxkbcommon +libpng +cairo +wayland +libjpeg +libpam \
+  +libxkbcommon +libpng +cairo +libjpeg +libpam \
   +xkbdata \
-  +FEATURE_drawing-backend_wayland:wayland \
-  +FEATURE_drawing-backend_drm:libdrm \
-  +FEATURE_drawing-backend_x11:xserver
+  $(if $(CONFIG_PACKAGE_wayland),+wayland) \
+  $(if $(CONFIG_PACKAGE_libdrm),+libdrm) \
+  $(if $(CONFIG_PACKAGE_libX11),+libX11)
 
   URL:=https://wayland.freedesktop.org/
 endef
@@ -47,9 +47,9 @@ CONFIGURE_ARGS+= \
 	--enable-weston-launch \
 	--disable-setuid-install \
 	WAYLAND_PROTOCOLS_DATADIR="${STAGING_DIR}/usr/share/wayland-protocols" \
-	$(if $(CONFIG_FEATURE_drawing-backend_wayland), --enable-wayland-compositor, --disable-wayland-compositor -disable-egl) \
-	$(if $(CONFIG_FEATURE_drawing-backend_drm), --enable-drm-compositor, --disable-drm-compositor) \
-	$(if $(CONFIG_FEATURE_drawing-backend_x11), --enable-x11-compositor --enable-xwayland, --disable-x11-compositor --disable-xwayland) \
+	$(if $(CONFIG_PACKAGE_wayland), --enable-wayland-compositor, --disable-wayland-compositor -disable-egl) \
+	$(if $(CONFIG_PACKAGE_libdrm), --enable-drm-compositor, --disable-drm-compositor) \
+	$(if $(CONFIG_PACKAGE_libX11), --enable-x11-compositor, --disable-x11-compositor)
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/lib/
