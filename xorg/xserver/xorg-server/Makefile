@@ -62,10 +62,10 @@ $(call Package/xorg/Default)
   +libfontenc \
   +pixman \
   +libopenssl \
-  +CONFIG_TARGET_x86:libpciaccess \
-  +CONFIG_TARGET_x86_64:libpciaccess \
+  +libpciaccess \
   +libdrm \
   +libgl-mesa \
+  +libepoxy \
   +@DISPLAY_X11_SUPPORT \
   @DISPLAY_SUPPORT
 endef
@@ -76,6 +76,7 @@ $(call Package/xorg/Default)
 endef
 
 EXTRA_LDFLAGS:=-Wl,-rpath-link=$(STAGING_DIR)/usr/lib
+CONFIG_PARAS:=--disable-xwayland
 
 define Build/Configure
 	$(call Build/Configure/Default, \
@@ -129,6 +130,7 @@ define Build/Configure
 		--disable-secure-rpc \
 		--enable-silent-rules \
 		--disable-shave \
+		$(CONFIG_PARAS) \
 	)
 endef
 
