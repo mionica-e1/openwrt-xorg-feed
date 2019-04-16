@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2007-2008 OpenWrt.org
+# Copyright (C) 2007-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -9,11 +9,11 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=libmatchbox
-PKG_RELEASE:=2
-PKG_VERSION:=1.9
-PKG_SOURCE_URL:=http://matchbox-project.org/sources/libmatchbox/$(PKG_VERSION)
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_MD5SUM:=9f73e7515cc4679171a5db180dc1343b
+PKG_RELEASE:=3
+PKG_VERSION:=1.12
+PKG_SOURCE_URL:=https://git.yoctoproject.org/cgit/cgit.cgi/${PKG_NAME}/snapshot
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_MD5SUM:=c3e952b903621423e46c1c4a513c53d6
 PKG_FIXUP:=libtool
 
 EXTRA_LDFLAGS+=-Wl,-rpath-link=$(STAGING_DIR)/usr/lib/
@@ -27,7 +27,7 @@ define Package/libmatchbox
   SECTION:=xorg-libraries
   CATEGORY:=Xorg
   SUBMENU:=libraries
-  DEPENDS:=+libX11 +libXft +libpng +libjpeg +libXext +pango +check
+  DEPENDS:=+libX11 +libXft +libpng +libjpeg +libXext +pango
   TITLE:=libmatchbox
   URL:=http://matchbox-project.org
 endef
@@ -38,6 +38,7 @@ define Build/Configure
 		--enable-jpeg \
 		--enable-png \
 		--enable-Xft \
+		--enable-unit-tests=no \
 	)
 endef
 
