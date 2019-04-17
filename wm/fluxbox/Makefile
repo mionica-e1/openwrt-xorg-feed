@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2007-2010 OpenWrt.org
+# Copyright (C) 2007-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -9,19 +9,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=fluxbox
-PKG_VERSION:=1.0.0
-PKG_RELEASE:=1
+PKG_VERSION:=1.3.7
+PKG_RELEASE:=2
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_SOURCE_URL:=@SF/fluxbox
-PKG_MD5SUM:=990e276ead0d04421dce4080f485caca
-
-EXTRA_LDFLAGS:="-Wl,-rpath-link=$(STAGING_DIR)/usr/lib"
+PKG_MD5SUM:=c4701822d8a09d426ebf26e7e97c552a
 
 include $(INCLUDE_DIR)/package.mk
-
-CONFIGURE_VARS+=LIBS="-nodefaultlibs -luClibc++ -Wl,-Bstatic,-lstdc++,-Bdynamic -lm $(LIBGCC_S)" \
-		CXXLD="$(TARGET_CC)" 
 
 CONFIGURE_ARGS+=--disable-xmb
 
@@ -34,7 +29,8 @@ endef
 
 define Package/fluxbox
 $(call Package/fluxbox/Default)
-  DEPENDS:=+uclibcxx +libXt +libXpm
+  DEPENDS:=+uclibcxx +libXt +libXpm +libXft +libXrender \
+	+libXrandr +libfreetype +libstdcpp +fontconfig
   TITLE:=fluxbox window manager
   MENU:=1
 endef
