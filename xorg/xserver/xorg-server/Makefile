@@ -57,6 +57,7 @@ $(call Package/xorg/Default)
   +xkbcomp \
   +libxkbfile \
   +libXfont \
+  +libXfont2 \
   +libXau \
   +libXv \
   +libfontenc \
@@ -66,6 +67,8 @@ $(call Package/xorg/Default)
   +libdrm \
   +libgl-mesa \
   +libepoxy \
+  +libevdev \
+  +libudev-fbsd \
   +@DISPLAY_X11_SUPPORT \
   @DISPLAY_SUPPORT
 endef
@@ -98,6 +101,7 @@ define Build/Configure
 		--disable-glx \
 		--enable-dri \
 		--enable-dri2 \
+		--enable-dri3 \
 		--disable-xinerama \
 		--disable-xf86vidmode \
 		--disable-xace \
@@ -130,6 +134,7 @@ define Build/Configure
 		--disable-secure-rpc \
 		--enable-silent-rules \
 		--disable-shave \
+		--enable-tslib \
 		$(CONFIG_PARAS) \
 	)
 endef
@@ -157,12 +162,12 @@ define Package/xserver-xorg/install
 		$(PKG_INSTALL_DIR)/usr/bin/Xorg \
 		$(1)/usr/bin/
 
-	$(INSTALL_DIR) $(1)/usr/lib/xorg/modules/{extensions,fonts,linux,multimedia}
+	$(INSTALL_DIR) $(1)/usr/lib/xorg/modules/{extensions,drivers}
 	$(INSTALL_DATA) \
 		$(PKG_INSTALL_DIR)/usr/lib/xorg/modules/*.so \
 		$(1)/usr/lib/xorg/modules/
 
-	$(foreach d,extensions fonts linux multimedia, \
+	$(foreach d,extensions drivers, \
 		$(INSTALL_DATA) \
 			$(PKG_INSTALL_DIR)/usr/lib/xorg/modules/$(d)/*.so \
 			$(1)/usr/lib/xorg/modules/$(d)/; \
