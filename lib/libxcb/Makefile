@@ -16,7 +16,8 @@ PKG_SOURCE_URL:=http://xcb.freedesktop.org/dist/
 PKG_HASH:=188c8752193c50ff2dbe89db4554c63df2e26a2e47b0fa415a70918b5b851daa
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
-PKG_BUILD_DEPENDS:=xcbproto libpthread-stubs
+
+PKG_BUILD_DEPENDS:=xcbproto/host
 
 include $(INCLUDE_DIR)/package.mk
 
@@ -30,7 +31,7 @@ define Package/libxcb
   CATEGORY:=Xorg
   SUBMENU:=libraries
   TITLE:=libxcb
-  DEPENDS:=+libXau +libXdmcp
+  DEPENDS:=+libXau +libXdmcp +libpthread-stubs
   URL:=http://xcb.freedesktop.org/
 endef
 
