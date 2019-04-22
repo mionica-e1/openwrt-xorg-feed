@@ -31,11 +31,14 @@ define Package/weston
   TITLE:=weston window manager
 
   DEPENDS:=@!avr32 @DISPLAY_SUPPORT +libinput +pixman \
-  +libxkbcommon +libpng +cairo +libjpeg +libpam \
-  +xkbdata \
-  $(if $(CONFIG_PACKAGE_wayland),+wayland) \
-  $(if $(CONFIG_PACKAGE_libdrm),+libdrm) \
-  $(if $(CONFIG_PACKAGE_libX11),+libX11)
+	+libxkbcommon +libpng +cairo +libjpeg +libpam \
+	+xkbdata \
+	$(if $(CONFIG_PACKAGE_wayland),+wayland) \
+	$(if $(CONFIG_PACKAGE_libdrm),+libdrm) \
+	$(if $(CONFIG_PACKAGE_libX11),+libX11 +libXcursor +libxcb +libxcb-shape +libxcb-xfixes +libxcb-xkb) \
+	$(if $(CONFIG_PACKAGE_libgl-mesa-egl),+libgl-mesa-egl) \
+	$(if $(CONFIG_PACKAGE_libgl-mesa-gles-v2),+libgl-mesa-gles-v2) \
+	$(if $(CONFIG_PACKAGE_libpango),+libpango +libgbm) \
 
   URL:=https://wayland.freedesktop.org/
 endef
