@@ -103,9 +103,18 @@ STAMP_CONFIGURED:=$(STAMP_CONFIGURED)_$(call confvar,CONFIG_PACKAGE_libgl-mesa \
 
 define Build/Configure
 	$(call Build/Configure/Default, \
+		--disable-debug \
 		--disable-glw \
+		--disable-selinux \
+		--disable-llvm \
+		--disable-llvm-shared-libs \
+		--enable-opengl \
+		--enable-glx \
+		$(if $(CONFIG_PACKAGE_libgl-mesa-egl),--enable-egl,--disable-egl) \
+		$(if $(CONFIG_PACKAGE_libgl-mesa-gles-v1),--enable-gles1,--disable-gles1) \
+		$(if $(CONFIG_PACKAGE_libgl-mesa-gles-v2),--enable-gles2,--disable-gles2) \
 		--with-driver=dri \
-		--with-platform=drm \
+		--with-platforms="x11 drm" \
 		--with-dri-drivers=" \
 		$(foreach dri,$(DRIDRIVERS),$(if $(CONFIG_PACKAGE_libgl-mesa-dri-$(dri)),$(dri)))" \
 		--with-gallium-drivers="\
@@ -167,7 +176,7 @@ define Package/libgl-mesa-dri/install/Default
 define Package/libgl-mesa-dri-$(1)/install
 	$(INSTALL_DIR) $$(1)/usr/lib/dri/
 	$(CP) \
-		$(PKG_INSTALL_DIR)/usr/lib/dri/$(1)_dri.so* \
+		$(PKG_INSTALL_DIR)/usr/lib/dri/$(2)_dri.so* \
 		$$(1)/usr/lib/dri
 endef
 endef
@@ -181,9 +190,10 @@ define Package/libgl-mesa-gallium-$(1)/install
 endef
 endef
 
-$(foreach dri,$(DRIDRIVERS),$(eval $(call Package/libgl-mesa-dri/install/Default,$(dri))))
+$(foreach dri,$(DRIDRIVERS),$(eval $(call Package/libgl-mesa-dri/install/Default,$(dri),$(dri))))
 $(foreach dri,$(GALLIUM_X86),$(eval $(call Package/libgl-mesa-gallium/install/Default,$(dri))))
-$(foreach dri,$(GALLIUM_ARM),$(eval $(call Package/libgl-mesa-gallium/install/Default,$(dri))))
+
+$(eval $(call Package/libgl-mesa-dri/install/Default,$(dri)))
 
 $(eval $(call BuildPackage,libgl-mesa))
 $(eval $(call BuildPackage,libgl-mesa-egl))
