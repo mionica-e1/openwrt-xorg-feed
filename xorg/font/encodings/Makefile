@@ -22,7 +22,7 @@ define Package/encodings
   SECTION:=xorg-font
   CATEGORY:=Xorg
   SUBMENU:=font
-  DEPENDS:= +xserver +font-util @DISPLAY_SUPPORT
+  DEPENDS:= +xserver @DISPLAY_SUPPORT
   TITLE:=encodings
   URL:=http://xorg.freedesktop.org/
 endef
