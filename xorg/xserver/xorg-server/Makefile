@@ -19,10 +19,11 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/xserver/$(PKG_NAME)-$(PKG_VERSION)/
 PKG_BUILD_DEPENDS:=randrproto renderproto fixesproto damageproto xcmiscproto \
 				   xextproto xproto scrnsaverproto bigreqsproto resourceproto \
 				   fontsproto inputproto kbproto videoproto resourceproto \
-				   compositeproto xf86dgaproto xtrans xf86driproto dri2proto
+				   compositeproto xf86dgaproto xtrans xf86driproto dri2proto \
+				   presentproto
 
 PKG_INSTALL:=1
-PKG_FIXUP:=libtool
+#PKG_FIXUP:=libtool
 PKG_BUILD_PARALLEL:=1
 
 PKG_CONFIG_DEPENDS:=CONFIG_PACKAGE_xserver-xorg CONFIG_PACKAGE_xserver-common
