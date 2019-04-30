@@ -1,0 +1,38 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2019 OpenWrt.org
+
+START=30
+STOP=10
+
+USE_PROCD=1
+PROG=/usr/sbin/udevd
+NAME=udevd
+EUDEVD_CONFIG=/etc/udev/udev.conf
+
+service_triggers() {
+	procd_add_reload_trigger eudevd
+}
+
+start_service() {
+	local disabled="$(uci get eudevd.@eudevd[-1].disabled || echo 0)"
+
+	[ "$disabled" == "0" ] || return
+
+	if [ ! -d "/var/run" ]; then
+		mkdir -p "/var/run"
+	fi
+
+	procd_open_instance
+	procd_set_param command "$PROG"
+	procd_set_param respawn \
+     		${respawn_threshold:-3600} \
+      		${respawn_timeout:-5} ${respawn_retry:-5}
+	procd_close_instance
+}
+
+shutdown() {
+	# Stop execution of events
+        udevadm control --stop-exec-queue
+        killall udevd
+}
+
