@@ -19,6 +19,7 @@ PKG_MD5SUM:=3f3989700f04e9117d30544a9078b3a0
 PKG_FIXUP:=autoreconf
 PKG_INSTALL:=1
 PKG_BUILD_PARALLEL:=0
+PKG_BUILD_DEPENDS:=libXft
 
 include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/nls.mk
@@ -32,7 +33,7 @@ define Package/pango
   SUBMENU:=libraries
   TITLE:=Text layout and rendering library
   DEPENDS:=+cairo +glib2 +fontconfig +libfreetype \
-  $(if $(CONFIG_PACKAGE_libX11),+libX11 +libXft +libXrender)
+  	+libX11 +libXrender +libXft
   URL:=http://www.pango.org/
 endef
 
@@ -45,7 +46,7 @@ and font handling for GTK+-2.x.
 endef
 
 CONFIGURE_ARGS += \
-	$(if $(CONFIG_PACKAGE_libX11), --with-x, --without-x)
+	--with-x
 
 CONFIGURE_VARS += \
 	CXX="$(TARGET_CC)"
