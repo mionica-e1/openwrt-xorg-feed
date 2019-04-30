@@ -91,6 +91,14 @@ define Package/weston/install
 
 	$(INSTALL_DIR) $(1)/usr/bin/
 	$(CP) $(PKG_INSTALL_DIR)/usr/bin/* $(1)/usr/bin/
+
+	$(INSTALL_DIR) $(1)/etc/weston
+	$(INSTALL_DATA) ./files/weston.ini $(1)/etc/weston/weston.ini
+
+	$(INSTALL_DIR) $(1)/etc/config
+	$(INSTALL_DATA) ./files/weston.config $(1)/etc/config/weston
+	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_BIN) ./files/weston.init $(1)/etc/init.d/weston
 endef
 
 $(eval $(call BuildPackage,weston))

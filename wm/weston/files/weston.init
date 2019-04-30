@@ -1,0 +1,41 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2019 OpenWrt.org
+
+START=95
+STOP=10
+
+USE_PROCD=1
+PROG=/usr/bin/weston
+NAME=weston
+
+service_triggers() {
+	procd_add_reload_trigger weston
+}
+
+start_service() {
+	local backend="$(uci get weston.@weston[-1].backend)"
+	local config="$(uci get weston.@weston[-1].config)"
+	local disabled="$(uci get weston.@weston[-1].disabled || echo 0)"
+
+	[ "$disabled" == "0" ] || return
+	
+	if [ ! -d "/tmp/wayland" ]; then
+		mkdir -p "/tmp/wayland"
+		chmod 0700 /tmp/wayland
+	fi
+
+	procd_open_instance
+	procd_set_param env XDG_RUNTIME_DIR=/tmp/wayland
+	procd_set_param command "$PROG"
+	procd_append_param command "--config=$config --backend=$backend"
+	procd_set_param respawn \
+     		${respawn_threshold:-3600} \
+      		${respawn_timeout:-5} ${respawn_retry:-5}
+	procd_close_instance
+}
+
+shutdown() {
+	# close all instance
+	killall weston
+}
+
