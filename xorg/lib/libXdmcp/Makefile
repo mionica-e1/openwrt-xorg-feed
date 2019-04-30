@@ -19,7 +19,7 @@ PKG_HASH:=81fe09867918fff258296e1e1e159f0dc639cb30d201c53519f25ab73af4e4e2
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
-PKG_BUILD_DEPENDS:=xproto
+PKG_BUILD_DEPENDS:=xproto xorg-macros
 
 include $(INCLUDE_DIR)/package.mk
 
