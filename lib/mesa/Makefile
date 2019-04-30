@@ -15,7 +15,7 @@ PKG_SOURCE_URL:=https://mesa.freedesktop.org/archive/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
 PKG_HASH:=aaf17638dcf5a90b93b6389e152fdc9ef147768b09598f24d2c5cf482fcfc705
 PKG_FIXUP:=libtool
-PKG_BUILD_DEPENDS:=glproto
+PKG_BUILD_DEPENDS:=glproto xrandr
 
 include $(INCLUDE_DIR)/package.mk
 
