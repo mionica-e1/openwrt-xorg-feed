@@ -20,7 +20,7 @@ PKG_BUILD_DEPENDS:=randrproto renderproto fixesproto damageproto xcmiscproto \
 				   xextproto xproto scrnsaverproto bigreqsproto resourceproto \
 				   fontsproto inputproto kbproto videoproto resourceproto \
 				   compositeproto xf86dgaproto xtrans xf86driproto dri2proto \
-				   presentproto
+				   presentproto dri3proto
 
 PKG_INSTALL:=1
 #PKG_FIXUP:=libtool
@@ -69,7 +69,7 @@ $(call Package/xorg/Default)
   +libgl-mesa \
   +libepoxy \
   +libevdev \
-  +libudev-fbsd \
+  +libudev \
   +@DISPLAY_X11_SUPPORT \
   @DISPLAY_SUPPORT
 endef
