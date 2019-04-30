@@ -32,14 +32,10 @@ define Package/weston
 
   DEPENDS:=@!avr32 @DISPLAY_SUPPORT +libinput +pixman \
 	+libxkbcommon +libpng +cairo +libjpeg +libpam \
-	+xkbdata \
-	$(if $(CONFIG_PACKAGE_wayland),+wayland) \
-	$(if $(CONFIG_PACKAGE_libdrm),+libdrm) \
-	$(if $(CONFIG_PACKAGE_libX11),+libX11 +libXcursor +libxcb +libxcb-shape +libxcb-xfixes +libxcb-xkb) \
-	$(if $(CONFIG_PACKAGE_libgl-mesa-egl),+libgl-mesa-egl) \
-	$(if $(CONFIG_PACKAGE_libgl-mesa-gles-v2),+libgl-mesa-gles-v2) \
-	$(if $(CONFIG_PACKAGE_libpango),+libpango +libgbm) \
-
+	+xkbdata +wayland \
+	+libdrm +libgl-mesa-egl +libgl-mesa-gles-v2 \
+	+libXcursor +libxcb-composite +libxcb-shape +libxcb-xfixes \
+	+pango
   URL:=https://wayland.freedesktop.org/
 endef
 
@@ -50,9 +46,9 @@ CONFIGURE_ARGS+= \
 	--enable-weston-launch \
 	--disable-setuid-install \
 	WAYLAND_PROTOCOLS_DATADIR="${STAGING_DIR}/usr/share/wayland-protocols" \
-	$(if $(CONFIG_PACKAGE_wayland), --enable-wayland-compositor, --disable-wayland-compositor -disable-egl) \
-	$(if $(CONFIG_PACKAGE_libdrm), --enable-drm-compositor, --disable-drm-compositor) \
-	$(if $(CONFIG_PACKAGE_libX11), --enable-x11-compositor, --disable-x11-compositor)
+	--enable-wayland-compositor \
+	--enable-drm-compositor \
+	--disable-x11-compositor
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/lib/
