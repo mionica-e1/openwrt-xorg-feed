@@ -18,7 +18,7 @@ PKG_HASH:=02945ea68da447102f3e6c2b896c1d2061fd115de99404facc2aca3ad7010d71
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
-PKG_BUILD_DEPENDS:=xproto fontcacheproto fontsproto xtrans
+PKG_BUILD_DEPENDS:=xproto fontcacheproto fontsproto xtrans xorg-macros
 
 include $(INCLUDE_DIR)/package.mk
 
