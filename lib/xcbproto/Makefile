@@ -56,10 +56,14 @@ define Build/InstallDev
 		$(1)/usr/lib/pkgconfig/
 endef
 
+define Package/xcbproto/install
+	true
+endef
+
 define Host/Install
 	$(INSTALL_DIR) $(1)/usr/lib/python$(PYTHON_VERSION)/site-packages/xcbgen
 	$(INSTALL_DATA) \
-		$(PKG_INSTALL_DIR)/usr/lib/python$(PYTHON_VERSION)/site-packages/xcbgen/*.py \
+		$(HOST_BUILD_DIR)/xcbgen/*.py \
 		$(1)/usr/lib/python$(PYTHON_VERSION)/site-packages/xcbgen/
 endef
 
