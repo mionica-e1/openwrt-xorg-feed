@@ -36,6 +36,17 @@ endef
 CONFIGURE_ARGS+= \
 	--disable-pda-folders
 
+define Build/InstallDev
+	$(INSTALL_DIR) $(1)/usr/lib/matchbox/desktop
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/matchbox/desktop/*.{so*,la,a} $(1)/usr/lib/matchbox/desktop/
+
+	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* $(1)/usr/lib/pkgconfig/
+
+	$(INSTALL_DIR) $(1)/usr/include/matchbox-desktop/
+	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/include/matchbox-desktop/* $(1)/usr/include/matchbox-desktop/
+endef
+
 define Package/matchbox-common/install
 	$(INSTALL_DIR) $(1)/usr/{bin,share}
 	$(INSTALL_DIR) $(1)/usr/share/{icons,matchbox,pixmaps}
