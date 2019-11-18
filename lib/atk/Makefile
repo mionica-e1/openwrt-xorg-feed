@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2006-2010 OpenWrt.org
+# Copyright (C) 2006-2019 OpenWrt.org
 #
 # This is free software, licensed under the GNU General Public License v2.
 # See /LICENSE for more information.
@@ -9,12 +9,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=atk
-PKG_VERSION:=1.22.0
-PKG_RELEASE:=3
+PKG_VERSION_MAJOR:=2.22
+PKG_VERSION:=2.22.0
+PKG_RELEASE:=1
 
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=@GNOME/$(PKG_NAME)/1.22/
-PKG_MD5SUM:=06a2b39a22d5ca35c47435da6b9643ac
+PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=@GNOME/$(PKG_NAME)/$(PKG_VERSION_MAJOR)/
+PKG_HASH:=d349f5ca4974c9c76a4963e5b254720523b0c78672cbc0e1a3475dbd9b3d44b6
 
 PKG_FIXUP:=libtool
 
