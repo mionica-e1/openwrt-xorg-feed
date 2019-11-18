@@ -60,7 +60,6 @@ endef
 define Build/Configure
 	$(call Build/Configure/Default, \
 		--enable-shm \
-		--disable-xkb \
 		--disable-glibtest \
 		--disable-gdiplus \
 		--disable-xinerama \
