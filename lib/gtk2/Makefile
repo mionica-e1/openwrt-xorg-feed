@@ -97,7 +97,7 @@ define Package/gtk2/install
 		$(PKG_INSTALL_DIR)/usr/lib/*.so* \
 		$(1)/usr/lib/
 
-	$(foreach d,engines immodules loaders, \
+	$(foreach d,engines immodules, \
 		$(INSTALL_DIR) $(1)/usr/lib/gtk-2.0/2.10.0/$(d); \
 		$(INSTALL_DATA) \
 			$(PKG_INSTALL_DIR)/usr/lib/gtk-2.0/2.10.0/$(d)/*.so \
@@ -110,16 +110,13 @@ define Package/gtk2/install
 
 	$(INSTALL_DIR) $(1)/usr/bin/
 	$(INSTALL_BIN) \
-		$(PKG_INSTALL_DIR)/usr/bin/{gdk-pixbuf-query-loaders,gtk-query-immodules-2.0,gtk-update-icon-cache} \
+		$(PKG_INSTALL_DIR)/usr/bin/{gtk-builder-convert,gtk-query-immodules-2.0,gtk-update-icon-cache} \
 		$(1)/usr/bin/
 
 	$(INSTALL_DIR) $(1)/usr/share/themes/
 	$(CP) \
 		$(PKG_INSTALL_DIR)/usr/share/themes/* \
 		$(1)/usr/share/themes/
-
-	$(INSTALL_DIR) $(1)/etc/init.d/
-	$(INSTALL_BIN) ./files/gdk-pixbuf-query-loaders.init $(1)/etc/init.d/gdk-pixbuf-query-loaders
 endef
 
 define Package/gtk2-cups/install
