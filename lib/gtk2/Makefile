@@ -8,13 +8,14 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=gtk2
-PKG_VERSION:=2.17.0
+PKG_VERSION_MAJOR:=2.24
+PKG_VERSION:=2.24.32
 PKG_RELEASE:=2
 
-PKG_SOURCE:=gtk+-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=@GNOME/gtk+/2.17
+PKG_SOURCE:=gtk+-$(PKG_VERSION).tar.xz
+PKG_SOURCE_URL:=@GNOME/gtk+/$(PKG_VERSION_MAJOR)
 PKG_BUILD_DIR=$(BUILD_DIR)/gtk+-$(PKG_VERSION)
-PKG_MD5SUM:=a1a1f0b66a240c31cb2733643f9170ba
+PKG_HASH:=b6c8a93ddda5eabe3bfee1eb39636c9a03d2a56c7b62828b359bf197943c582e
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
@@ -34,7 +35,7 @@ define Package/gtk2
   CATEGORY:=Xorg
   SUBMENU:=framework
   TITLE:=GTK+-2.0
-  DEPENDS:=@DISPLAY_SUPPORT +cairo +pango +libpng +libjpeg +atk +libtiff +glib2 \
+  DEPENDS:=@DISPLAY_SUPPORT +cairo +pango +libpng +libjpeg +atk +libtiff +glib2 +gdk-pixbuf \
   +CONFIG_DISPLAY_DIRECTFB_SUPPORT:directfb \
   +CONFIG_DISPLAY_X11_SUPPORT:libX11 \
   +CONFIG_DISPLAY_X11_SUPPORT:libXext \
