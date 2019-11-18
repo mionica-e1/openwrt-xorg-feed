@@ -26,7 +26,7 @@ define Package/libXi
   SECTION:=xorg-libraries
   CATEGORY:=Xorg
   SUBMENU:=libraries
-  DEPENDS:=+libX11 +libXext
+  DEPENDS:=+libX11 +libXext +libXfixes
   TITLE:=libXi
   URL:=http://xorg.freedesktop.org/
 endef
