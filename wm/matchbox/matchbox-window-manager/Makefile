@@ -30,9 +30,17 @@ define Package/matchbox-window-manager
   SECTION:=xorg-wm
   CATEGORY:=Xorg
   SUBMENU:=window manager
-  DEPENDS:=+libX11 +zlib +libfreetype +fontconfig +libmatchbox
+  DEPENDS:=@!avr32 @DISPLAY_SUPPORT +libX11 +zlib +libfreetype +fontconfig +libmatchbox
   URL:=http://matchbox-project.org/
 endef
+
+CONFIGURE_ARGS+= \
+	--enable-expat \
+	--disable-gconf \
+	--disable-composite \
+	--disable-standalone \
+	--disable-standalone-xft
+
 
 define Build/Compile
 	$(MAKE) -C $(PKG_BUILD_DIR) \
