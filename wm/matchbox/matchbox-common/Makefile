@@ -25,9 +25,9 @@ include $(INCLUDE_DIR)/nls.mk
 PKG_INSTALL:=1
 
 define Package/matchbox-common
-  SECTION:=xorg-libraries
+  SECTION:=xorg-matchbox
   CATEGORY:=Xorg
-  SUBMENU:=libraries
+  SUBMENU:=Matchbox Window manager
   DEPENDS:=+libmatchbox
   TITLE:=matchbox-common
   URL:=http://matchbox-project.org

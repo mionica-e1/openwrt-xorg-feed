@@ -27,9 +27,9 @@ TARGET_LDFLAGS+= \
 
 define Package/matchbox-window-manager
   TITLE:=matchbox window manager
-  SECTION:=xorg-wm
+  SECTION:=xorg-matchbox
   CATEGORY:=Xorg
-  SUBMENU:=window manager
+  SUBMENU:=Matchbox Window manager
   DEPENDS:=@!avr32 @DISPLAY_SUPPORT +libX11 +zlib +libfreetype +fontconfig +libmatchbox
   URL:=http://matchbox-project.org/
 endef

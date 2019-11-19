@@ -24,9 +24,9 @@ include $(INCLUDE_DIR)/nls.mk
 PKG_INSTALL:=1
 
 define Package/matchbox-keyboard
-  SECTION:=xorg-libraries
+  SECTION:=xorg-matchbox
   CATEGORY:=Xorg
-  SUBMENU:=libraries
+  SUBMENU:=Matchbox Window manager
   DEPENDS:=+libmatchbox +libXft +libfakekey
   TITLE:=matchbox-keyboard
   URL:=http://matchbox-project.org
