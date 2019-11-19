@@ -37,15 +37,15 @@ define Package/gtk2
   TITLE:=GTK+-2.0
   DEPENDS:=@DISPLAY_SUPPORT +cairo +pango +libpng +libjpeg +atk +libtiff +glib2 +gdk-pixbuf \
   +CONFIG_DISPLAY_DIRECTFB_SUPPORT:directfb \
-  +CONFIG_DISPLAY_X11_SUPPORT:libX11 \
-  +CONFIG_DISPLAY_X11_SUPPORT:libXext \
-  +CONFIG_DISPLAY_X11_SUPPORT:libXrender \
-  +CONFIG_DISPLAY_X11_SUPPORT:libXfixes \
-  +CONFIG_DISPLAY_X11_SUPPORT:libXrandr \
-  +CONFIG_DISPLAY_X11_SUPPORT:libXcursor \
-  +CONFIG_DISPLAY_X11_SUPPORT:libXdamage \
-  +CONFIG_DISPLAY_X11_SUPPORT:libXcomposite \
-  +CONFIG_DISPLAY_X11_SUPPORT:libXi
+  +DISPLAY_X11_SUPPORT:libX11 \
+  +DISPLAY_X11_SUPPORT:libXext \
+  +DISPLAY_X11_SUPPORT:libXrender \
+  +DISPLAY_X11_SUPPORT:libXfixes \
+  +DISPLAY_X11_SUPPORT:libXrandr \
+  +DISPLAY_X11_SUPPORT:libXcursor \
+  +DISPLAY_X11_SUPPORT:libXdamage \
+  +DISPLAY_X11_SUPPORT:libXcomposite \
+  +DISPLAY_X11_SUPPORT:libXi
   URL:=http://www.gtk.org/
 endef
 
@@ -66,7 +66,7 @@ define Build/Configure
 		--without-libjasper \
 		--without-xinput \
 		$(if $(CONFIG_DISPLAY_DIRECTFB_SUPPORT),--with-gdktarget=directfb,) \
-		$(if $(CONFIG_CONFIG_DISPLAY_X11_SUPPORT),--with-x --with-gdktarget=x11,--without-x) \
+		$(if $(CONFIG_DISPLAY_X11_SUPPORT),--with-x --with-gdktarget=x11,--without-x) \
 		$(if $(CONFIG_PACKAGE_gtk2-cups),--enable-cups=auto,--disable-cups), \
 		gio_can_sniff=no \
 	)
