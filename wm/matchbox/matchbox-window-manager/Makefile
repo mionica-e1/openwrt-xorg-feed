@@ -9,14 +9,15 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=matchbox-window-manager
-PKG_VERSION:=1.2.2
 PKG_RELEASE:=1
-
-PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.gz
-PKG_SOURCE_URL:=https://git.yoctoproject.org/cgit/cgit.cgi/$(PKG_NAME)/snapshot
-PKG_MD5SUM:=66a778afb4117542f337419aa2c90af8
+PKG_VERSION:=1.2.2
+PKG_SOURCE_URL:=https://github.com/suwus/matchbox-window-manager.git
+PKG_SOURCE_PROTO:=git
+PKG_SOURCE_DATE:=2019-11-19
+PKG_SOURCE_VERSION:=91511f26a0584230a474d39490805618cbf672da
 
 PKG_FIXUP:=libtool
+
 PKG_INSTALL:=1
 
 include $(INCLUDE_DIR)/package.mk
@@ -30,26 +31,27 @@ define Package/matchbox-window-manager
   SECTION:=xorg-matchbox
   CATEGORY:=Xorg
   SUBMENU:=Matchbox Window manager
-  DEPENDS:=@!avr32 @DISPLAY_SUPPORT +libX11 +zlib +libfreetype +fontconfig +libmatchbox
+  DEPENDS:=@!avr32 @DISPLAY_SUPPORT +libX11 +zlib +libfreetype +fontconfig +libmatchbox \
+	+startup-notification +libSM +libXfixes +libXcursor +libpng
   URL:=http://matchbox-project.org/
 endef
 
-CONFIGURE_ARGS+= \
-	--enable-expat \
-	--disable-gconf \
-	--disable-composite \
-	--disable-standalone \
-	--disable-standalone-xft
-
-
-define Build/Compile
-	$(MAKE) -C $(PKG_BUILD_DIR) \
-		DESTDIR=$(PKG_INSTALL_DIR) \
-		LIBMB_LIBS="$(TARGET_LDFLAGS) -lfontconfig -lXrender \
-		-lz -lexpat -lfreetype -lXft -lmb -lX11 -lXext -lXau -lXdmcp \
-		-lpng12" \
-		all
+define Build/Configure
+	$(CP) -r ./m4 $(PKG_BUILD_DIR)
+	cd $(PKG_BUILD_DIR); \
+		aclocal & autoheader & automake --force-missing --add-missing & autoconf
+		
+	$(call Build/Configure/Default, \
+		--enable-expat \
+		--disable-gconf \
+		--disable-composite \
+		--disable-standalone \
+		--disable-standalone-xft \
+		--enable-startup-notification \
+		--enable-session \
+	)
 endef
+
 
 define Package/matchbox-window-manager/install
 	$(INSTALL_DIR) $(1)/etc/matchbox
