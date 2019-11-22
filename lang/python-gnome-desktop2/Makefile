@@ -35,7 +35,7 @@ define Package/python-gnome-desktop/Default
   CATEGORY:=Languages
   TITLE:=$(1) python bindings
   URL:=http://ftp.gnome.org/
-  DEPENDS:=+python-mini python-gtk $(2)
+  DEPENDS:=+python python-gtk $(2)
 endef
 
 define Package/python-rsvg

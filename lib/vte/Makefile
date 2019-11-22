@@ -48,7 +48,7 @@ define Package/python-vte
   SUBMENU:=Python
   TITLE:=Python bindings for vte
   URL:=http://developer.gnome.org/arch/gnome/widgets/vte.html
-  DEPENDS:=+python-mini +PACKAGE_python-vte:python-gtk +vte
+  DEPENDS:=+python +PACKAGE_python-vte:python-gtk +vte
 endef
 
 define Package/vte/description

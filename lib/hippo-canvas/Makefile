@@ -53,7 +53,7 @@ $(call Package/hippo-canvas/Default)
   CATEGORY:=Languages
   SUBMENU:=Python
   TITLE:=Python bindings for hippo canvas
-  DEPENDS+=+python-mini +PACKAGE_python-hippo-canvas:python-gtk +PACKAGE_python-hippo-canvas:pycairo +hippo-canvas
+  DEPENDS+=+python +PACKAGE_python-hippo-canvas:python-gtk +PACKAGE_python-hippo-canvas:pycairo +hippo-canvas
 endef
 
 define Build/Configure
