@@ -21,6 +21,8 @@ HOST_BUILD_DEPENDS:=python/host
 include $(INCLUDE_DIR)/package.mk
 include $(TOPDIR)/feeds/packages/lang/python/python-package.mk
 include $(INCLUDE_DIR)/host-build.mk
+include $(TOPDIR)/feeds/packages/lang/python/python3-host.mk
+include $(TOPDIR)/feeds/packages/lang/python/python-host.mk
 
 define Package/Mako
   SUBMENU:=Python
@@ -43,14 +45,14 @@ define Host/Configure
 endef
 
 define Host/Compile
-  $(call Build/Compile/HostPyMod,,install --prefix="" --root="$(STAGING_DIR_HOSTPKG)")
+  $(call Build/Compile/HostPy3Mod,,install --prefix="" --root="$(STAGING_DIR_HOSTPKG)")
 endef
 
 define Host/Install
 endef
 
 define Build/Compile
-	$(call Build/Compile/PyMod,,install --prefix=/usr --root=$(PKG_INSTALL_DIR))
+	$(call Build/Compile/Py3Mod,,install --prefix=/usr --root=$(PKG_INSTALL_DIR))
 endef
 
 $(eval $(call HostBuild))
