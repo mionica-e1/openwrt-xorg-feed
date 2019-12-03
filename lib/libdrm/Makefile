@@ -30,38 +30,120 @@ define Package/libdrm
   URL:=http://dri.freedesktop.org/
 endef
 
-define Package/libdrm-api/Default
-define Package/libdrm-$(1)
+define Package/libdrm-amdgpu
   SECTION:=xorg-libraries
   CATEGORY:=Xorg
   SUBMENU:=libraries
-  DEPENDS:=libdrm @DISPLAY_SUPPORT $(2)
-  TITLE:=drm $(1) api
+  DEPENDS:=libdrm @DISPLAY_SUPPORT @TARGET_x86
+  TITLE:=drm amdgpu api
   URL:=https://dri.freedesktop.org
 endef
+
+define Package/libdrm-radeon
+  SECTION:=xorg-libraries
+  CATEGORY:=Xorg
+  SUBMENU:=libraries
+  DEPENDS:=libdrm @DISPLAY_SUPPORT @TARGET_x86
+  TITLE:=drm radeon api
+  URL:=https://dri.freedesktop.org
 endef
 
-DRM_X86:=amdgpu nouveau radeon intel vmwgfx
-DRM_ARM:=freedreno freedreno-kgsl vc4
-DRM_ARM_EX:=omap exynos tegra etnaviv
+define Package/libdrm-nouveau
+  SECTION:=xorg-libraries
+  CATEGORY:=Xorg
+  SUBMENU:=libraries
+  DEPENDS:=libdrm @DISPLAY_SUPPORT
+  TITLE:=drm nouveau api
+  URL:=https://dri.freedesktop.org
+endef
+
+define Package/libdrm-intel
+  SECTION:=xorg-libraries
+  CATEGORY:=Xorg
+  SUBMENU:=libraries
+  DEPENDS:=libdrm @DISPLAY_SUPPORT @TARGET_x86
+  TITLE:=drm intel api
+  URL:=https://dri.freedesktop.org
+endef
+
+define Package/libdrm-vmwgfx
+  SECTION:=xorg-libraries
+  CATEGORY:=Xorg
+  SUBMENU:=libraries
+  DEPENDS:=libdrm @DISPLAY_SUPPORT @TARGET_x86
+  TITLE:=drm vmwgfx api
+  URL:=https://dri.freedesktop.org
+endef
+
+define Package/libdrm-freedreno
+  SECTION:=xorg-libraries
+  CATEGORY:=Xorg
+  SUBMENU:=libraries
+  DEPENDS:=libdrm @DISPLAY_SUPPORT @(arm||aarch64)
+  TITLE:=drm freedreno api
+  URL:=https://dri.freedesktop.org
+endef
+
+define Package/libdrm-vc4
+  SECTION:=xorg-libraries
+  CATEGORY:=Xorg
+  SUBMENU:=libraries
+  DEPENDS:=libdrm @DISPLAY_SUPPORT @(arm||aarch64)
+  TITLE:=drm vc4 api
+  URL:=https://dri.freedesktop.org
+endef
+
+define Package/libdrm-omap_experimental_api
+  SECTION:=xorg-libraries
+  CATEGORY:=Xorg
+  SUBMENU:=libraries
+  DEPENDS:=libdrm @DISPLAY_SUPPORT @(arm||aarch64)
+  TITLE:=drm omap experimental api
+  URL:=https://dri.freedesktop.org
+endef
+
+define Package/libdrm-exynos_experimental_api
+  SECTION:=xorg-libraries
+  CATEGORY:=Xorg
+  SUBMENU:=libraries
+  DEPENDS:=libdrm @DISPLAY_SUPPORT @(arm||aarch64)
+  TITLE:=drm exynos experimental api
+  URL:=https://dri.freedesktop.org
+endef
+
+define Package/libdrm-tegra_experimental_api
+  SECTION:=xorg-libraries
+  CATEGORY:=Xorg
+  SUBMENU:=libraries
+  DEPENDS:=libdrm @DISPLAY_SUPPORT @(arm||aarch64)
+  TITLE:=drm tegra experimental api
+  URL:=https://dri.freedesktop.org
+endef
+
+define Package/libdrm-etnaviv_experimental_api
+  SECTION:=xorg-libraries
+  CATEGORY:=Xorg
+  SUBMENU:=libraries
+  DEPENDS:=libdrm @DISPLAY_SUPPORT @(arm||aarch64)
+  TITLE:=drm etnaviv experimental api
+  URL:=https://dri.freedesktop.org
+endef
+
+DRM_APIS:=amdgpu nouveau radeon intel vmwgfx freedreno vc4 \
+		tegra_experimental_api etnaviv_experimental_api \
+		omap_experimental_api exynos_experimental_api
 
 CONFIGURE_ARGS += --enable-malloc0returnsnull --without-xcb
 
-$(foreach dri,$(DRM_X86),$(eval $(call Package/libdrm-api/Default,$(dri),@TARGET_x86)))
-$(foreach dri,$(DRM_ARM),$(eval $(call Package/libdrm-api/Default,$(dri),@arm)))
-$(foreach dri,$(DRM_ARM_EX),$(eval $(call Package/libdrm-api/Default,$(dri),@arm)))
 
 STAMP_CONFIGURED:=$(STAMP_CONFIGURED)_$(call confvar,CONFIG_PACKAGE_libdrm \
-    $(foreach dri,$(DRM_X86),CONFIG_PACKAGE_libdrm-$(dri)) \
-	$(foreach dri,$(DRM_ARM),CONFIG_PACKAGE_libdrm-$(dri)) \
-	$(foreach dri,$(DRM_ARM_EX),CONFIG_PACKAGE_libdrm-$(dri)) \
+    $(foreach dri,$(DRM_APIS),CONFIG_PACKAGE_libdrm-$(dri)) \
 	)
 
 define Build/Configure
 	$(call Build/Configure/Default, \
-		$(foreach dri,$(DRM_X86),$(if $(CONFIG_PACKAGE_libdrm-$(dri)),--enable-$(dri),--disable-$(dri))) \
-		$(foreach dri,$(DRM_ARM),$(if $(CONFIG_PACKAGE_libdrm-$(dri)),--enable-$(dri),--disable-$(dri))) \
-		$(foreach dri,$(DRM_ARM_EX),$(if $(CONFIG_PACKAGE_libdrm-$(dri)),--enable-$(dri)-experimental-api)) \
+		--disable-freedeno-kgsl \
+		$(foreach dri,$(DRM_APIS),$(if $(CONFIG_PACKAGE_libdrm-$(dri)),--enable-$(dri),--disable-$(dri))) \
 		)
 endef
 
@@ -74,28 +156,86 @@ endef
 
 define Package/libdrm/install
 	$(INSTALL_DIR) $(1)/usr/lib
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libdrm* $(1)/usr/lib/
-	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libkms* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libdrm.so* $(1)/usr/lib/
+	$(CP) $(PKG_INSTALL_DIR)/usr/lib/libkms.so* $(1)/usr/lib/
 endef
 
 define Build/InstallDev
 	$(CP) $(PKG_INSTALL_DIR)/* $(1)/
 endef
 
-define Package/libdrm-api/install/Default
-define Package/libdrm-$(1)/install
-	$(INSTALL_DIR) $$(1)/usr/lib/
+define Package/libdrm-amdgpu/install
+	$(INSTALL_DIR) $(1)/usr/lib/
 	$(CP) \
-		$(PKG_INSTALL_DIR)/usr/lib/libdrm_$(1).so* \
-		$$(1)/usr/lib/
-endef
+		$(PKG_INSTALL_DIR)/usr/lib/libdrm_amdgpu.so* \
+		$(1)/usr/lib/
 endef
 
-$(foreach dri,$(DRM_X86),$(eval $(call Package/libdrm_api/install/Default,$(dri))))
-$(foreach dri,$(DRM_ARM),$(eval $(call Package/libdrm_api/install/Default,$(dri))))
-$(foreach dri,$(DRM_ARM_EX),$(eval $(call Package/libdrm_api/install/Default,$(dri))))
+define Package/libdrm-nouveau/install
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) \
+		$(PKG_INSTALL_DIR)/usr/lib/libdrm_nouveau.so* \
+		$(1)/usr/lib/
+endef
+
+define Package/libdrm-radeon/install
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) \
+		$(PKG_INSTALL_DIR)/usr/lib/libdrm_radeon.so* \
+		$(1)/usr/lib/
+endef
+
+define Package/libdrm-intel/install
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) \
+		$(PKG_INSTALL_DIR)/usr/lib/libdrm_intel.so* \
+		$(1)/usr/lib/
+endef
+
+define Package/libdrm-vmwgfx/install
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) \
+		$(PKG_INSTALL_DIR)/usr/lib/libdrm_vmwgfx.so* \
+		$(1)/usr/lib/
+endef
+
+define Package/libdrm-freedreno/install
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) \
+		$(PKG_INSTALL_DIR)/usr/lib/libdrm_freedreno.so* \
+		$(1)/usr/lib/
+endef
+
+define Package/libdrm-vc4/install
+endef
+
+define Package/libdrm-omap_experimental_api/install
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) \
+		$(PKG_INSTALL_DIR)/usr/lib/libdrm_omap.so* \
+		$(1)/usr/lib/
+endef
+
+define Package/libdrm-exynos_experimental_api/install
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) \
+		$(PKG_INSTALL_DIR)/usr/lib/libdrm_exynos.so* \
+		$(1)/usr/lib/
+endef
+
+define Package/libdrm-tegra_experimental_api/install
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) \
+		$(PKG_INSTALL_DIR)/usr/lib/libdrm_tegra.so* \
+		$(1)/usr/lib/
+endef
+
+define Package/libdrm-etnaviv_experimental_api/install
+	$(INSTALL_DIR) $(1)/usr/lib/
+	$(CP) \
+		$(PKG_INSTALL_DIR)/usr/lib/libdrm_etnaviv.so* \
+		$(1)/usr/lib/
+endef
 
 $(eval $(call BuildPackage,libdrm))
-$(foreach dri,$(DRM_X86),$(eval $(call BuildPackage,libdrm-$(dri))))
-$(foreach dri,$(DRM_ARM),$(eval $(call BuildPackage,libdrm-$(dri))))
-$(foreach dri,$(DRM_ARM_EX),$(eval $(call BuildPackage,libdrm-$(dri))))
+$(foreach dri,$(DRM_APIS),$(eval $(call BuildPackage,libdrm-$(dri))))
