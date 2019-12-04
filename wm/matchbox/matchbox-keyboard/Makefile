@@ -41,10 +41,14 @@ define Package/matchbox-keyboard/install
 		$(PKG_INSTALL_DIR)/usr/bin/* \
 		$(1)/usr/bin/
 
-	$(INSTALL_DIR) $(1)/usr/share/{applications,locale,pixmaps}
+	$(INSTALL_DIR) $(1)/usr/share/{applications,matchbox-keyboard,pixmaps}
+	$(INSTALL_DIR) $(1)/usr/share/applications/inputmethods
 	$(INSTALL_DATA) \
-		$(PKG_INSTALL_DIR)/usr/share/applications/* \
-		$(1)/usr/share/applications/
+		$(PKG_INSTALL_DIR)/usr/share/applications/inputmethods/* \
+		$(1)/usr/share/applications/inputmethods/
+	$(INSTALL_DATA) \
+		$(PKG_INSTALL_DIR)/usr/share/matchbox-keyboard/* \
+		$(1)/usr/share/matchbox-keyboard/
 	$(INSTALL_DATA) \
 		$(PKG_INSTALL_DIR)/usr/share/pixmaps/* \
 		$(1)/usr/share/pixmaps/
