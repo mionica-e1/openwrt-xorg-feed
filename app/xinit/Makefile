@@ -8,13 +8,13 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xinit
-PKG_VERSION:=1.0.5
+PKG_VERSION:=1.4.1
 PKG_RELEASE:=1
 
-PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/X11R7.3/src/app
+PKG_SOURCE_URL:=https://www.x.org/releases/individual/app/
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR=$(BUILD_DIR)/Xorg/$(_CATEGORY)/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=9a2aad51042141a0e6ad066015397595
+PKG_MD5SUM:=6d506ab2efc17a08e87778654e099d37
 
 PKG_INSTALL:=1
 
