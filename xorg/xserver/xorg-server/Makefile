@@ -95,7 +95,7 @@ define Build/Configure
 		--disable-record \
 		--enable-xv \
 		--enable-xvmc \
-		--disable-dga \
+		--enable-dga \
 		--disable-screensaver \
 		--disable-xdmcp \
 		--disable-xdm-auth-1 \
