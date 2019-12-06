@@ -28,16 +28,16 @@ define Package/xf86-video-armada
   SECTION:=xorg-driver
   CATEGORY:=Xorg
   SUBMENU:=driver
-  DEPENDS:=+xserver-xorg +libdrm +libdrm-armada
+  DEPENDS:=@DISPLAY_SUPPORT +xserver-xorg +libdrm +libdrm-armada +etna_viv
   TITLE:=xf86-video-armada
   URL:=http://git.arm.linux.org.uk/cgit/xf86-video-armada.git/
 endef
 
-CONFIGURE_ARGS+= \
-	--disable-vivante \
-	--enable-etnaviv \
-	--enable-etnadrm
+ETNA_SRC:=$(BUILD_DIR)/Xorg/etna_viv-$(PKG_VERSION)
 
+CONFIGURE_ARGS+= \
+	--disable-etnaviv \
+	--with-etnaviv-source=$(ETNA_SRC)
 
 define Package/xf86-video-armada/install
 	$(INSTALL_DIR) $(1)/usr/lib/xorg/modules/drivers
