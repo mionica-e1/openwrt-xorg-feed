@@ -16,6 +16,8 @@ PKG_BUILD_DIR=$(BUILD_DIR)/Xorg/$(_CATEGORY)/${PKG_NAME}-$(PKG_VERSION)/
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/X11R7.3/src/font
 PKG_MD5SUM:=11adda157b03d63fd61d95ad7ef00466
 
+PKG_BUILD_DEPENDS:= font-util
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/encodings

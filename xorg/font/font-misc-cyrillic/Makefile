@@ -16,13 +16,15 @@ PKG_BUILD_DIR=$(BUILD_DIR)/Xorg/$(_CATEGORY)/${PKG_NAME}-$(PKG_VERSION)/
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/X11R7.3/src/font
 PKG_MD5SUM:=3596907d7a2a99c81d8de99bc4552b6a
 
+PKG_BUILD_DEPENDS:= font-util
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/font-misc-cyrillic
   SECTION:=xorg-font
   CATEGORY:=Xorg
   SUBMENU:=font
-  DEPENDS:= +xserver +font-util @DISPLAY_SUPPORT
+  DEPENDS:= +xserver @DISPLAY_SUPPORT
   TITLE:=font-misc-cyrillic
   URL:=http://xorg.freedesktop.org/
 endef

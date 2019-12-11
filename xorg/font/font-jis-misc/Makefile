@@ -16,13 +16,15 @@ PKG_BUILD_DIR=$(BUILD_DIR)/Xorg/$(_CATEGORY)/${PKG_NAME}-$(PKG_VERSION)/
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/X11R7.3/src/font
 PKG_MD5SUM:=61febb49a71065723a1fba17cbf23c67
 
+PKG_BUILD_DEPENDS:= font-util
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/font-jis-misc
   SECTION:=xorg-font
   CATEGORY:=Xorg
   SUBMENU:=font
-  DEPENDS:= +xserver +font-util @DISPLAY_SUPPORT
+  DEPENDS:= +xserver @DISPLAY_SUPPORT
   TITLE:=font-jis-misc
   URL:=http://xorg.freedesktop.org/
 endef

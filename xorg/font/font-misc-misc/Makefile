@@ -15,6 +15,8 @@ PKG_VERSION:=1.1.2
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/font
 PKG_HASH:=b8e77940e4e1769dc47ef1805918d8c9be37c708735832a07204258bacc11794
 
+PKG_BUILD_DEPENDS:= font-util
+
 include $(INCLUDE_DIR)/package.mk
 
 define Package/font-misc-misc/Default
@@ -25,7 +27,7 @@ endef
 
 define Package/font-base
   $(call Package/font-misc-misc/Default)
-  DEPENDS:=+xserver +font-util @DISPLAY_SUPPORT
+  DEPENDS:=+xserver @DISPLAY_SUPPORT
   TITLE:=font-base
   URL:=http://xorg.freedesktop.org/
 endef
