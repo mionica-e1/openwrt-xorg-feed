@@ -39,7 +39,7 @@ CONFIGURE_ARGS+= \
 
 define Package/mb-applet-input-manager/install
 	$(INSTALL_DIR) $(1)/usr/{bin,share}
-	$(INSTALL_DATA) \
+	$(INSTALL_BIN) \
 		$(PKG_INSTALL_DIR)/usr/bin/* \
 		$(1)/usr/bin/
 

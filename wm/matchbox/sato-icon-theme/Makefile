@@ -30,7 +30,7 @@ define Package/sato-icon-theme
   CATEGORY:=Xorg
   SUBMENU:=Matchbox Window manager
   TITLE:=sato-icon-theme
-  DEPENDS:=+icon-naming-utils
+  DEPENDS:=
   URL:=http://matchbox-project.org
 endef
 

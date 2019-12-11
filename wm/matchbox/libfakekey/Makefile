@@ -59,11 +59,6 @@ define Package/libfakekey/install
 	$(INSTALL_DATA) \
 		$(PKG_INSTALL_DIR)/usr/lib/*.so.* \
 		$(1)/usr/lib/
-
-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
-	$(INSTALL_DATA) \
-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* \
-		$(1)/usr/lib/pkgconfig/
 endef
 
 $(eval $(call BuildPackage,libfakekey))

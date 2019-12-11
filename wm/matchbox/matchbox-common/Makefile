@@ -42,7 +42,7 @@ endef
 define Package/matchbox-common/install
 	$(INSTALL_DIR) $(1)/usr/{bin,share}
 	$(INSTALL_DIR) $(1)/usr/share/{icons,matchbox,pixmaps}
-	$(INSTALL_DATA) \
+	$(INSTALL_BIN) \
 		$(PKG_INSTALL_DIR)/usr/bin/matchbox-session \
 		$(1)/usr/bin/
 	$(CP) -r \

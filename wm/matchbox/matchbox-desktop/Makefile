@@ -39,28 +39,27 @@ CONFIGURE_ARGS+= \
 
 define Package/matchbox-desktop/install
 	$(INSTALL_DIR) $(1)/etc/matchbox
+	$(CP) -r \
+		$(PKG_INSTALL_DIR)/etc/matchbox/* \
+		$(1)/etc/matchbox/
+
 	$(INSTALL_DIR) $(1)/usr/{bin,lib,share}
-	$(INSTALL_DATA) \
+	$(INSTALL_BIN) \
 		$(PKG_INSTALL_DIR)/usr/bin/matchbox-desktop \
 		$(1)/usr/bin/
 
 	$(INSTALL_DIR) $(1)/usr/lib/matchbox/desktop
-	$(CP) -r \
-		$(PKG_INSTALL_DIR)/usr/lib/matchbox/desktop/*so \
-		$(1)/usr/lib/matchbox/desktop
-
-	$(INSTALL_DIR) $(1)/usr/lib/pkgconfig
-	$(CP) -r \
-		$(PKG_INSTALL_DIR)/usr/lib/pkgconfig/* \
-		$(1)/usr/lib/pkgconfig
+	$(INSTALL_DATA) \
+		$(PKG_INSTALL_DIR)/usr/lib/matchbox/desktop/*.so \
+		$(1)/usr/lib/matchbox/desktop/
 
 	$(INSTALL_DIR) $(1)/usr/share/{applications,pixmaps}
 	$(CP) -r \
 		$(PKG_INSTALL_DIR)/usr/share/applications/* \
-		$(1)/usr/share/applications
+		$(1)/usr/share/applications/
 	$(CP) -r \
 		$(PKG_INSTALL_DIR)/usr/share/pixmaps/* \
-		$(1)/usr/share/pixmaps
+		$(1)/usr/share/pixmaps/
 endef
 
 $(eval $(call BuildPackage,matchbox-desktop))

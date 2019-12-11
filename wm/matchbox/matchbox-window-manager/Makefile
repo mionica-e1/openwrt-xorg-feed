@@ -71,6 +71,7 @@ define Package/matchbox-window-manager/install
 	$(CP) \
 		$(PKG_INSTALL_DIR)/usr/share/themes/* \
 		$(1)/usr/share/themes/
+		
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) \
 		./files/uci-defaults/x11 \
