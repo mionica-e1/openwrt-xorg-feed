@@ -25,6 +25,7 @@ define Package/icon-naming-utils
   SECTION:=xorg-utils
   CATEGORY:=Xorg
   SUBMENU:=utils
+  DEPENDS:=+perl
   TITLE:=icon-naming-utils
   URL:=http://tango.freedesktop.org
 endef
@@ -36,12 +37,9 @@ endef
 
 define Package/icon-naming-utils/install
   $(INSTALL_DIR) $(1)/usr/lib
-	$(INSTALL_DATA) \
+	$(INSTALL_BIN) \
 		$(PKG_INSTALL_DIR)/usr/lib/icon-name-mapping \
 		$(1)/usr/lib/
-
-	$(INSTALL_DIR) $(1)/usr/share/pkgconfig/
-	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/share/pkgconfig/* $(1)/usr/share/pkgconfig/
 
 	$(INSTALL_DIR) $(1)/usr/share/dtds/
 	$(INSTALL_DATA) $(PKG_INSTALL_DIR)/usr/share/dtds/* $(1)/usr/share/dtds/
@@ -52,7 +50,7 @@ endef
 
 define Host/Install
   $(INSTALL_DIR) $(1)/usr/lib
-	$(INSTALL_DATA) \
+	$(INSTALL_BIN) \
 		$(HOST_BUILD_DIR)/icon-name-mapping \
 		$(1)/usr/lib/
 
