@@ -37,7 +37,6 @@ define Package/matchbox-window-manager
 endef
 
 define Build/Configure
-	$(CP) -r ./m4 $(PKG_BUILD_DIR)
 	cd $(PKG_BUILD_DIR); \
 		aclocal & autoheader & automake --force-missing --add-missing & autoconf
 		
@@ -68,10 +67,10 @@ define Package/matchbox-window-manager/install
 	$(INSTALL_DATA) \
 		$(PKG_INSTALL_DIR)/usr/share/matchbox/* \
 		$(1)/usr/share/matchbox/
-	$(CP) \
+	$(CP) -r \
 		$(PKG_INSTALL_DIR)/usr/share/themes/* \
 		$(1)/usr/share/themes/
-		
+
 	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(INSTALL_DATA) \
 		./files/uci-defaults/x11 \
