@@ -70,6 +70,7 @@ $(call Package/xorg/Default)
   +libepoxy \
   +libevdev \
   +libudev \
+  +xkeyboard-config \
   +@DISPLAY_X11_SUPPORT \
   @DISPLAY_SUPPORT
 endef
@@ -89,7 +90,7 @@ define Build/Configure
 		--disable-unit-tests \
 		--disable-builddocs \
 		--disable-glx-tls \
-		--disable-composite \
+		--enable-composite \
 		--disable-shm \
 		--disable-xres \
 		--disable-record \
@@ -99,10 +100,11 @@ define Build/Configure
 		--disable-screensaver \
 		--disable-xdmcp \
 		--disable-xdm-auth-1 \
-		--disable-glx \
+		--enable-glx \
 		--enable-dri \
 		--enable-dri2 \
 		--enable-dri3 \
+		--enable-libdrm \
 		--disable-xinerama \
 		--disable-xf86vidmode \
 		--disable-xace \
@@ -136,6 +138,9 @@ define Build/Configure
 		--enable-silent-rules \
 		--disable-shave \
 		--enable-tslib \
+		--enable-config-udev \
+		--enable-config-udev-kms \
+		--enable-glamor \
 		$(CONFIG_PARAS) \
 	)
 endef
