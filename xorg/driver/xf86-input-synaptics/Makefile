@@ -9,12 +9,12 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=xf86-input-synaptics
 PKG_RELEASE:=2
-PKG_VERSION:=2.10.5
+PKG_VERSION:=1.9.0
 
 PKG_SOURCE_URL:=http://xorg.freedesktop.org/releases/individual/driver
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION).tar.bz2
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
-PKG_MD5SUM:=94c2c8354c74ab1cfbbb0a222078b9c6
+PKG_HASH:=afba3289d7a40217a19d90db98ce181772f9ca6d77e1898727b0afcf02073b5a
 
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
