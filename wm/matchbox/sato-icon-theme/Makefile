@@ -38,11 +38,21 @@ define Package/sato-icon-theme/description
  Matchbox Sato Icon Theme
 endef
 
+UTILS_PATH:=$(STAGING_DIR_HOSTPKG)/usr/lib
+
+MAKE_FLAGS += \
+    ICONMAP="$(UTILS_PATH)/icon-name-mapping"
+
+define Build/Compile
+	make -e -C $(PKG_BUILD_DIR) $(MAKE_FLAGS)
+	DESTDIR=$(PKG_INSTALL_DIR) $(MAKE) -C $(PKG_BUILD_DIR) $(MAKE_FLAGS) install
+endef
+
 define Package/sato-icon-theme/install
-	$(INSTALL_DIR) $(1)/usr/share/matchbox/vfolders
-	$(INSTALL_DATA) \
-		$(PKG_INSTALL_DIR)/usr/share/matchbox/vfolders/* \
-		$(1)/usr/share/matchbox/vfolders/
+	$(INSTALL_DIR) $(1)/usr/share/icons/Sato
+	$(CP) -r \
+		$(PKG_INSTALL_DIR)/usr/share/icons/Sato/* \
+		$(1)/usr/share/icons/Sato/
 endef
 
 $(eval $(call BuildPackage,sato-icon-theme))
