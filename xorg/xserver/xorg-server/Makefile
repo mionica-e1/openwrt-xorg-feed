@@ -81,7 +81,8 @@ $(call Package/xorg/Default)
 endef
 
 EXTRA_LDFLAGS:=-Wl,-rpath-link=$(STAGING_DIR)/usr/lib
-CONFIG_PARAS:=--disable-xwayland
+CONFIG_PARAS:=--disable-xwayland \
+		--host=$(GNU_TARGET_NAME)
 
 define Build/Configure
 	$(call Build/Configure/Default, \

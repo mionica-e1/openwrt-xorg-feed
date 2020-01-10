@@ -34,6 +34,7 @@ endef
 define Build/Configure
 	$(call Build/Configure/Default, \
 		--enable-pciaccess \
+		--host=$(GNU_TARGET_NAME) \
 	)
 endef
 
