@@ -35,12 +35,15 @@ endef
 
 ETNA_SRC:=$(BUILD_DIR)/Xorg/etna_viv-$(PKG_VERSION)
 
-CONFIGURE_ARGS+= \
-	--enable-maintainer-mode \
-	--disable-vivante \
-	--enable-etnaviv \
-	--with-etnaviv-source=$(ETNA_SRC) \
-	--host=$(GNU_TARGET_NAME)
+define Build/Configure
+	$(call Build/Configure/Default, \
+		--enable-maintainer-mode \
+		--disable-vivante \
+		--enable-etnaviv \
+		--with-etnaviv-source=$(ETNA_SRC) \
+		--host=$(GNU_TARGET_NAME)
+	)
+endef
 
 define Package/xf86-video-armada/install
 	$(INSTALL_DIR) $(1)/usr/lib/xorg/modules/drivers
