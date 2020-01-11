@@ -41,7 +41,7 @@ define Build/Configure
 		--disable-vivante \
 		--enable-etnaviv \
 		--with-etnaviv-source=$(ETNA_SRC) \
-		--host=$(GNU_TARGET_NAME)
+		--host=$(GNU_TARGET_NAME) \
 	)
 endef
 
