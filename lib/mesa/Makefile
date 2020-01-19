@@ -261,6 +261,7 @@ define Build/Configure
 		--disable-llvm-shared-libs \
 		--enable-opengl \
 		--enable-glx \
+		--with-dri-driverdir=/usr/lib/dri \
 		$(if $(CONFIG_PACKAGE_libgl-mesa-egl),--enable-egl,--disable-egl) \
 		$(if $(CONFIG_PACKAGE_libosmesa),--enable-gallium-osmesa,--disable-gallium-osmesa) \
 		$(if $(CONFIG_PACKAGE_libgl-mesa-gles-v1),--enable-gles1,--disable-gles1) \
