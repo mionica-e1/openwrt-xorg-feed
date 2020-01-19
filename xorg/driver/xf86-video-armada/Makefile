@@ -18,6 +18,8 @@ PKG_SOURCE_VERSION:=34a7272573431a9a0fabb94012f902198a3ac9a7
 
 PKG_BUILD_DIR:=$(BUILD_DIR)/Xorg/$(PKG_NAME)-$(PKG_VERSION)/
 
+EXTRA_LDFLAGS+=-Wl,-rpath-link=$(STAGING_DIR)/usr/lib/
+
 PKG_FIXUP:=libtool
 PKG_INSTALL:=1
 
@@ -38,6 +40,7 @@ ETNA_SRC:=$(BUILD_DIR)/Xorg/etna_viv-$(PKG_VERSION)
 define Build/Configure
 	(cd $(PKG_BUILD_DIR); mkdir m4; autoreconf --install; $(TARGET_CONFIGURE_OPTS) \
 		 ./configure --enable-maintainer-mode \
+		--prefix=/usr \
 		--enable-etnaviv \
 		--with-etnaviv-source=$(ETNA_SRC) \
 		--host=$(GNU_TARGET_NAME);)
