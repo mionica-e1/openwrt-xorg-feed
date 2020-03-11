@@ -26,7 +26,7 @@ define Package/libepoxy
   CATEGORY:=Xorg
   SUBMENU:=libraries
   TITLE:=libepoxy
-  DEPENDS:= +libgl-mesa
+  DEPENDS:= +libgl-mesa +libgl-mesa-egl
   URL:=https://github.com/anholt/libepoxy
 endef
 
