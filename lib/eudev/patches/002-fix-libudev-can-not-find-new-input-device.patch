@@ -1,0 +1,13 @@
+Index: eudev-3.2.7/src/libudev/libudev-monitor.c
+===================================================================
+--- eudev-3.2.7.orig/src/libudev/libudev-monitor.c
++++ eudev-3.2.7/src/libudev/libudev-monitor.c
+@@ -140,7 +140,7 @@ static bool udev_has_devtmpfs(struct ude
+                         continue;
+ 
+                 /* accept any name that starts with the currently expected type */
+-                if (startswith(e + 3, "devtmpfs"))
++                if (startswith(e + 3, "tmpfs"))
+                         return true;
+         }
+ 
