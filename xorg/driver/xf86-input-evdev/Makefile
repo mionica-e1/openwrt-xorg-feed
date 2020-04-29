@@ -35,9 +35,14 @@ endef
 
 define Package/xf86-input-evdev/install
 	$(INSTALL_DIR) $(1)/usr/lib/xorg/modules/input
+	$(INSTALL_DIR) $(1)/usr/share/X11/xorg.conf.d
 	$(INSTALL_DATA) \
 		$(PKG_INSTALL_DIR)/usr/lib/xorg/modules/input/evdev_drv.so \
 		$(1)/usr/lib/xorg/modules/input/
+	$(INSTALL_DATA) \
+		$(PKG_INSTALL_DIR)/usr/share/X11/xorg.conf.d/*.conf \
+		$(1)/usr/share/X11/xorg.conf.d/
 endef
 
 $(eval $(call BuildPackage,xf86-input-evdev))
+
