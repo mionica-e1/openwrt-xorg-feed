@@ -268,6 +268,7 @@ define Build/Configure
 		$(if $(CONFIG_PACKAGE_libgl-mesa-gles-v2),--enable-gles2,--disable-gles2) \
 		--with-driver=dri \
 		--with-platforms="x11 drm" \
+		--with-dri-driverdir="/usr/lib/dri" \
 		--with-dri-drivers=" \
 		$(foreach dri,$(DRI_DRV),$(if $(CONFIG_PACKAGE_libgl-mesa-dri-$(dri)),$(dri)))" \
 		--with-gallium-drivers="\
