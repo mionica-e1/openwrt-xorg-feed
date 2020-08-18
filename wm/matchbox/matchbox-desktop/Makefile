@@ -37,6 +37,9 @@ CONFIGURE_ARGS+= \
 	--enable-expat \
 	--disable-startup-notification
 
+EXTRA_LDFLAGS += \
+	 $(if $(CONFIG_LIBC_USE_GLIBC),-ldl,)
+
 define Package/matchbox-desktop/install
 	$(INSTALL_DIR) $(1)/etc/matchbox
 	$(CP) -r \
